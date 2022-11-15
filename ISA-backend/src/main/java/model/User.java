@@ -180,9 +180,4 @@ public class User {
 		this.company = company;
 	}
 	
-	
-	
-	
-	
-	
 }
