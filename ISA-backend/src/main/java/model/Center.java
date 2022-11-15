@@ -2,16 +2,36 @@ package model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Center {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String name;
 	private String address;
 	private String description;
 	private Float grade;
+	
+	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Appointment> freeAppointments;
+	
+	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<User> admins;
 	
+	public Center() {
+		super();
+	}
+
 	public Center(Long id, String name, String address, String description, Float grade,
 			List<Appointment> freeAppointments, List<User> admins) {
 		super();

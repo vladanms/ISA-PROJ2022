@@ -3,12 +3,29 @@ package model;
 import java.time.LocalTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Appointment {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long id;
+	
+	@OneToMany(mappedBy = "appointment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	public List<User> staff;
 	public LocalTime time;
 	public int duration;
+	
+	public Appointment() {
+		super();
+	}
 	
 	public Appointment(Long id, List<User> staff, LocalTime time, int duration) {
 		super();
