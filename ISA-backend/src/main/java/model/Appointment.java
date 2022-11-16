@@ -23,16 +23,28 @@ public class Appointment {
 	public LocalTime time;
 	public int duration;
 	
+	//ako je termin slobodan user je null;
+	public User user;
+	
 	public Appointment() {
 		super();
 	}
 	
-	public Appointment(Long id, List<User> staff, LocalTime time, int duration) {
+	public Appointment(Long id, List<User> staff, LocalTime time, int duration, User user) {
 		super();
 		this.id = id;
 		this.staff = staff;
 		this.time = time;
 		this.duration = duration;
+		this.user = user;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Long getId() {

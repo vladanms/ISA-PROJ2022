@@ -20,7 +20,8 @@ public class Center {
 	private String name;
 	private String address;
 	private String description;
-	private Float grade;
+	private List<Float> grade;
+	private Float avgGrade;
 	
 	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Appointment> freeAppointments;
@@ -32,7 +33,7 @@ public class Center {
 		super();
 	}
 
-	public Center(Long id, String name, String address, String description, Float grade,
+	public Center(Long id, String name, String address, String description, List<Float> grade,
 			List<Appointment> freeAppointments, List<User> admins) {
 		super();
 		this.id = id;
@@ -42,6 +43,18 @@ public class Center {
 		this.grade = grade;
 		this.freeAppointments = freeAppointments;
 		this.admins = admins;
+		if(this.grade.size() > 0)
+		{
+			for(int i = 0; i <= this.grade.size(); i++)
+			{
+				avgGrade += this.grade.get(i);
+			}
+			avgGrade = avgGrade/this.grade.size();
+		}
+		else
+		{
+			avgGrade = (float) 0;
+		}
 	}
 
 	public Long getId() {
@@ -76,12 +89,32 @@ public class Center {
 		this.description = description;
 	}
 
-	public Float getGrade() {
+	public List<Float> getGrade() {
 		return grade;
 	}
 
-	public void setGrade(Float grade) {
+	public void setGrade(List<Float> grade) {
 		this.grade = grade;
+		if(this.grade.size() > 0)
+		{
+			for(int i = 0; i <= this.grade.size(); i++)
+			{
+				avgGrade += this.grade.get(i);
+			}
+			avgGrade = avgGrade/this.grade.size();
+		}
+		else
+		{
+			avgGrade = (float) 0;
+		}
+	}
+
+	public Float getAvgGrade() {
+		return avgGrade;
+	}
+
+	public void setAvgGrade(Float avgGrade) {
+		this.avgGrade = avgGrade;
 	}
 
 	public List<Appointment> getFreeAppointments() {
@@ -100,6 +133,10 @@ public class Center {
 		this.admins = admins;
 	}
 	
+	public void addGrade(Float g)
+	{
+		this.grade.add(g);
+	}
 	
 	
 	
