@@ -16,7 +16,7 @@ public class UserService {
 	
 	public Boolean register(User user) {
 		User userTemp = userRepository.findByEmail(user.getEmail());
-		if(userTemp == null) {
+		if(userTemp != null) {
 			return false;
 		}
 		userRepository.save(user);

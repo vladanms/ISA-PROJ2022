@@ -1,29 +1,57 @@
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "userId", unique = true, nullable = false)
 	private Long id;
 	
+	@Column(name = "userName", nullable = false)
 	private String name;
+	
+	@Column(name = "userSurname", nullable = false)
 	private String surname;
+	
+	@Column(name = "userEmail", unique = true, nullable = false)
 	private String email;
+	
+	@Column(name = "userJmbg", unique = true, nullable = false)
 	private String jmbg;
+	
+	@Column(name = "userPassword", nullable = false)
 	private String password;
+	
+	@Column(name = "userAddress", nullable = false)
 	private String address;
+	
+	@Column(name = "userCity", nullable = false)
 	private String city;
+	
+	@Column(name = "userCountry", nullable = false)
 	private String country;
+	
+	@Column(name = "userPhone", nullable = false)
 	private String phone;
+	
+	@Column(name = "userGender", nullable = false)
 	private Gender gender;
+	
+	@Column(name = "userType", nullable = false)
 	private UserType type;
+	
+	@Column(name = "userOccupation", nullable = false)
 	private String occupation;
+	
+	@Column(name = "userCompany", nullable = false)
 	private String company;
 	
 	
@@ -31,11 +59,10 @@ public class User {
 		super();
 	}
 	
-	public User(Long id, String name, String surname, String email, String jmbg, String password, String address,
+	public User(String name, String surname, String email, String jmbg, String password, String address,
 			String city, String country, String phone, Gender gender, UserType type, String occupation,
 			String company) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.surname = surname;
 		this.email = email;

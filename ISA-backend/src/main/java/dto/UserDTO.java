@@ -6,7 +6,6 @@ import model.UserType;
 
 public class UserDTO {
 
-	private Long id;
 	private String name;
 	private String surname;
 	private String email;
@@ -25,7 +24,7 @@ public class UserDTO {
 		this(user.getId(), user.getName(), user.getSurname(), user.getEmail(), user.getJmbg(), user.getPassword(), user.getAddress(), user.getCity(), user.getCountry(), user.getPhone(), user.getGender(), user.getType(), user.getOccupation(), user.getCity());
 	}*/
 	
-	public UserDTO(Long id, String name, String surname, String email, String jmbg, String password, String address,
+	public UserDTO(String name, String surname, String email, String jmbg, String password, String address,
 			String city, String country, String phone, Gender gender, UserType type, String occupation,
 			String company) {
 		super();
@@ -171,13 +170,5 @@ public class UserDTO {
 
 	public void setCompany(String company) {
 		this.company = company;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 }

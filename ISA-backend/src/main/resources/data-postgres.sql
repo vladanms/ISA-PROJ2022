@@ -1,0 +1,1 @@
+INSERT INTO public.user (userId, userName, userSurname, userEmail, userJmbg, userPassword, userAddress, userCity, userCountry, userPhone, userGender, userType, userOccupation, userCompany) VALUES (default, 'Igor', 'Miskic', 'igor@gmail.com', '123', 'asd', 'Ulica Broj 1', 'Novi Sad', 'Srbija', '12345', 'M', 'Registered', 'none', 'FTN');

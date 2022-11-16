@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.Random;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +25,6 @@ public class UserController {
 
 		User user = new User();
 		
-		Random rd = new Random();
-		user.setId(rd.nextLong());
 		user.setName(userDTO.getName());
 		user.setSurname(userDTO.getSurname());
 		user.setEmail(userDTO.getEmail());
