@@ -10,11 +10,12 @@ public class CenterDTO {
 	private String name;
 	private String address;
 	private String description;
-	private Float grade;
+	private List<Float> grade;
 	private List<Appointment> freeAppointments;
 	private List<User> admins;
+	private Float avgGrade;
 	
-	public CenterDTO(Long id, String name, String address, String description, Float grade,
+	public CenterDTO(Long id, String name, String address, String description, List<Float> grade,
 			List<Appointment> freeAppointments, List<User> admins) {
 		super();
 		this.name = name;
@@ -23,6 +24,18 @@ public class CenterDTO {
 		this.grade = grade;
 		this.freeAppointments = freeAppointments;
 		this.admins = admins;
+		if(this.grade.size() > 0)
+		{
+			for(int i = 0; i <= this.grade.size(); i++)
+			{
+				avgGrade += this.grade.get(i);
+			}
+			avgGrade = avgGrade/this.grade.size();
+		}
+		else
+		{
+			avgGrade = (float) 0;
+		}
 	}
 
 	public String getName() {
@@ -49,12 +62,20 @@ public class CenterDTO {
 		this.description = description;
 	}
 
-	public Float getGrade() {
+	public List<Float> getGrade() {
 		return grade;
 	}
 
-	public void setGrade(Float grade) {
+	public void setGrade(List<Float> grade) {
 		this.grade = grade;
+	}
+
+	public Float getAvgGrade() {
+		return avgGrade;
+	}
+
+	public void setAvgGrade(Float avgGrade) {
+		this.avgGrade = avgGrade;
 	}
 
 	public List<Appointment> getFreeAppointments() {

@@ -27,19 +27,16 @@ public class UserService {
 		userRepository.deleteById(id);
 	}
 	
-	public void edit(User user)
+	public Boolean edit(User user)
 	{
 		Optional<User> toEditResponse = userRepository.findById(user.getId());
 		User toEdit = toEditResponse.get(); 
-		
-		toEdit.setName(user.getName());
-		toEdit.setSurname(user.getSurname());
-		toEdit.setAddress(user.getAddress());
-		toEdit.setPhone(user.getPhone());
-		toEdit.setCity(user.getCity());
-		toEdit.setCountry(user.getCountry());
-		toEdit.setGender(user.getGender());
-		
-		userRepository.save(toEdit);
+		if(toEdit == null)
+		{
+			return false;
+		}
+
+		userRepository.save(user);
+		return true;
 	}
 }

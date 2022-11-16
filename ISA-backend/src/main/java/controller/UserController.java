@@ -23,7 +23,7 @@ public class UserController {
 	private UserService userService;
 	
 	@PostMapping("/registration")
-	public ResponseEntity<User> saveStudent(@RequestBody UserDTO userDTO) {
+	public ResponseEntity<User> saveUser(@RequestBody UserDTO userDTO) {
 
 		User user = new User();
 		
@@ -45,6 +45,25 @@ public class UserController {
 		
 		if(userService.register(user)) {
 			return new ResponseEntity<>(HttpStatus.CREATED);
+		}
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	}
+	
+	@PostMapping("/editProfile")
+	public ResponseEntity<User> editUser(@RequestBody User user)
+	{
+		
+		/*
+		toEdit.setName(user.getName());
+		toEdit.setSurname(user.getSurname());
+		toEdit.setAddress(user.getAddress());
+		toEdit.setPhone(user.getPhone());
+		toEdit.setCity(user.getCity());
+		toEdit.setCountry(user.getCountry());
+		toEdit.setGender(user.getGender());
+		*/
+		if(userService.edit(user)) {
+			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
