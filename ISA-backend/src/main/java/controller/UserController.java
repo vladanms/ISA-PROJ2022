@@ -3,6 +3,8 @@ package controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,16 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	User loggedInUser = new User();
+	
+	/*public User GetLoggedInUser(){
+		
+	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	String loggedInEmail = authentication.getName();	
+	loggedInUser = userService.findByEmail(loggedInEmail);
+	return loggedInUser;
+	}*/
+	
 	
 	@PostMapping("/registration")
 	public ResponseEntity<User> saveUser(@RequestBody UserDTO userDTO) {
@@ -41,6 +53,16 @@ public class UserController {
 		
 		if(userService.register(user)) {
 			return new ResponseEntity<>(HttpStatus.CREATED);
+		}
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	}
+	
+	@PostMapping("/login")
+	public ResponseEntity<User> login(@RequestBody String email, String password)
+	{
+		if(userService.login(email, password)) {
+			loggedInUser = userService.findByEmail(email);
+			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}

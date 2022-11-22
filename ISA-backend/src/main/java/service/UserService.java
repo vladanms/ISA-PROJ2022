@@ -27,6 +27,11 @@ public class UserService {
 		userRepository.deleteById(id);
 	}
 	
+	public User findByEmail(String email)
+	{
+		return userRepository.findByEmail(email);
+	}
+	
 	public Boolean edit(User user)
 	{
 		Optional<User> toEditResponse = userRepository.findById(user.getId());
@@ -38,5 +43,19 @@ public class UserService {
 
 		userRepository.save(user);
 		return true;
+	}
+	
+	public Boolean login(String email, String password)
+	{
+		User user = userRepository.findByEmail(email);
+		if(user == null)
+		{
+			return false;
+		}
+		if(user.getPassword().equals(password))
+		{
+			return true;
+		}
+		return false;
 	}
 }
