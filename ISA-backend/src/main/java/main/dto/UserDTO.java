@@ -1,8 +1,8 @@
-package dto;
+package main.dto;
 
-import model.Gender;
-import model.User;
-import model.UserType;
+import main.model.Gender;
+import main.model.User;
+import main.model.UserType;
 
 public class UserDTO {
 

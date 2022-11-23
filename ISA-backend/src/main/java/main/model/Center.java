@@ -1,4 +1,4 @@
-package model;
+package main.model;
 
 import java.util.List;
 
@@ -24,29 +24,29 @@ public class Center {
 	private String address;
 	@Column(name = "centerDescription", nullable = false)
 	private String description;
-	@Column(name = "centerGrade", nullable = false)
-	private List<Float> grade;
+	//@Column(name = "centerGrade", nullable = false)
+	//private List<Float> grade;
 	@Column(name = "centerAvgGrade", nullable = false)
 	private Float avgGrade;
 	
-	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Appointment> freeAppointments;
+	//@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	//private List<Appointment> freeAppointments;
 	
-	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<User> admins;
+	//@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	//private List<User> admins;
 	
 	public Center() {
 		super();
 	}
 
-	public Center(Long id, String name, String address, String description, List<Float> grade,
-			List<Appointment> freeAppointments, List<User> admins) {
+	public Center(Long id, String name, String address, String description, Float avgGrade) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.address = address;
 		this.description = description;
-		this.grade = grade;
+		this.avgGrade = avgGrade;
+		/*this.grade = grade;
 		this.freeAppointments = freeAppointments;
 		this.admins = admins;
 		if(this.grade.size() > 0)
@@ -60,7 +60,7 @@ public class Center {
 		else
 		{
 			avgGrade = (float) 0;
-		}
+		}*/
 	}
 
 	public Long getId() {
@@ -95,7 +95,7 @@ public class Center {
 		this.description = description;
 	}
 
-	public List<Float> getGrade() {
+	/*public List<Float> getGrade() {
 		return grade;
 	}
 
@@ -113,7 +113,7 @@ public class Center {
 		{
 			avgGrade = (float) 0;
 		}
-	}
+	}*/
 
 	public Float getAvgGrade() {
 		return avgGrade;
@@ -123,7 +123,7 @@ public class Center {
 		this.avgGrade = avgGrade;
 	}
 
-	public List<Appointment> getFreeAppointments() {
+	/*public List<Appointment> getFreeAppointments() {
 		return freeAppointments;
 	}
 
@@ -142,7 +142,7 @@ public class Center {
 	public void addGrade(Float g)
 	{
 		this.grade.add(g);
-	}
+	}*/
 	
 	
 	

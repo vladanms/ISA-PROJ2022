@@ -1,27 +1,26 @@
-package dto;
+package main.dto;
 
 import java.util.List;
 
-import model.Appointment;
-import model.User;
+import main.model.User;
 
 public class CenterDTO {
 
 	private String name;
 	private String address;
 	private String description;
-	private List<Float> grade;
-	private List<Appointment> freeAppointments;
-	private List<User> admins;
+	//private List<Float> grade;
+	//private List<Appointment> freeAppointments;
+	//private List<User> admins;
 	private Float avgGrade;
 	
-	public CenterDTO(Long id, String name, String address, String description, List<Float> grade,
-			List<Appointment> freeAppointments, List<User> admins) {
+	public CenterDTO(Long id, String name, String address, String description, Float avgGrade) {
 		super();
 		this.name = name;
 		this.address = address;
 		this.description = description;
-		this.grade = grade;
+		this.avgGrade = avgGrade;
+		/*this.grade = grade;
 		this.freeAppointments = freeAppointments;
 		this.admins = admins;
 		if(this.grade.size() > 0)
@@ -35,7 +34,7 @@ public class CenterDTO {
 		else
 		{
 			avgGrade = (float) 0;
-		}
+		}*/
 	}
 
 	public String getName() {
@@ -62,13 +61,13 @@ public class CenterDTO {
 		this.description = description;
 	}
 
-	public List<Float> getGrade() {
+	/*public List<Float> getGrade() {
 		return grade;
 	}
 
 	public void setGrade(List<Float> grade) {
 		this.grade = grade;
-	}
+	}*/
 
 	public Float getAvgGrade() {
 		return avgGrade;
@@ -78,7 +77,7 @@ public class CenterDTO {
 		this.avgGrade = avgGrade;
 	}
 
-	public List<Appointment> getFreeAppointments() {
+	/*public List<Appointment> getFreeAppointments() {
 		return freeAppointments;
 	}
 
@@ -92,7 +91,7 @@ public class CenterDTO {
 
 	public void setAdmins(List<User> admins) {
 		this.admins = admins;
-	}
+	}*/
 	
 	
 }

@@ -1,4 +1,4 @@
-package model;
+package main.model;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 @Entity
 public class UserAdminCenter extends User {
 	
-	@Column(name = "assignedCenters", nullable = false)
-	private List<Center> assignedCenters;
+	//@Column(name = "assignedCenters", nullable = false)
+	//private List<Center> assignedCenters;
 
 	public UserAdminCenter() {
 		super();
@@ -20,16 +20,16 @@ public class UserAdminCenter extends User {
 			String city, String country, String phone, Gender gender, UserType type, String occupation,
 			String company, List<Center> centers) {
 		super(name, surname, email, jmbg, password, address, city, country, phone, gender, type, occupation, company);
-		this.assignedCenters = centers;
+		//this.assignedCenters = centers;
 	}
 
-	public List<Center> getAssignedCenters() {
+	/*public List<Center> getAssignedCenters() {
 		return assignedCenters;
 	}
 
 	public void setAssignedCenters(List<Center> assignedCenters) {
 		this.assignedCenters = assignedCenters;
-	}
+	}*/
 	
 	
 

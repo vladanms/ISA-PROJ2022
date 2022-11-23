@@ -1,4 +1,4 @@
-package controller;
+package main.controller;
 
 import java.util.Random;
 
@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dto.CenterDTO;
-import dto.UserDTO;
-import model.Center;
-import model.User;
-import model.UserType;
-import service.CenterService;
-import service.UserService;
+import main.dto.CenterDTO;
+import main.dto.UserDTO;
+import main.model.Center;
+import main.model.User;
+import main.model.UserType;
+import main.service.CenterService;
+import main.service.UserService;
 
 @RestController
 @RequestMapping(value = "api/centers")
@@ -35,9 +35,10 @@ public class CenterController {
 					centerDTO.getName(),
 					centerDTO.getAddress(),
 					centerDTO.getDescription(),
-					centerDTO.getGrade(),
-					centerDTO.getFreeAppointments(),
-					centerDTO.getAdmins()
+					centerDTO.getAvgGrade()
+					//centerDTO.getGrade(),
+					//centerDTO.getFreeAppointments(),
+					//centerDTO.getAdmins()
 				);
 		
 			return new ResponseEntity<>(HttpStatus.OK);
