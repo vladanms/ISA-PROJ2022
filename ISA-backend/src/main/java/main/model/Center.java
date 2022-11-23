@@ -16,6 +16,7 @@ public class Center {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "centerId", unique = true, nullable = false)
 	private Long id;
 	
 	@Column(name = "centerName", nullable = false)
