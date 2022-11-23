@@ -1,9 +1,18 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
 public class UserRegistered extends User {
 
+	
+	@Column(name = "points", nullable = false)
 	private int points;
+	
+	@Column(name = "userCategory", nullable = false)
 	private UserCategory category;
+	
 	public UserRegistered() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -4,6 +4,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,10 +21,13 @@ public class Appointment {
 	
 	@OneToMany(mappedBy = "appointment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	public List<User> staff;
+	@Column(name = "appointmentTime", nullable = false)
 	public LocalTime time;
+	@Column(name = "appointmentDuration", nullable = false)
 	public int duration;
 	
 	//ako je termin slobodan user je null;
+	@Column(name = "appointedUser")
 	public User user;
 	
 	public Appointment() {

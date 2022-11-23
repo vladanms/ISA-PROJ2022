@@ -2,8 +2,13 @@ package model;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
 public class UserAdminCenter extends User {
 	
+	@Column(name = "assignedCenters", nullable = false)
 	private List<Center> assignedCenters;
 
 	public UserAdminCenter() {

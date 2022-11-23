@@ -3,6 +3,7 @@ package model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,10 +18,15 @@ public class Center {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(name = "centerName", nullable = false)
 	private String name;
+	@Column(name = "centerAddress", nullable = false)
 	private String address;
+	@Column(name = "centerDescription", nullable = false)
 	private String description;
+	@Column(name = "centerGrade", nullable = false)
 	private List<Float> grade;
+	@Column(name = "centerAvgGrade", nullable = false)
 	private Float avgGrade;
 	
 	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
