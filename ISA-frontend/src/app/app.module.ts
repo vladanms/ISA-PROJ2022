@@ -4,11 +4,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserRegistrationComponent } from './center/user-registration/user-registration.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { CenterSearchComponent } from './center-search/center-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserRegistrationComponent
+    UserRegistrationComponent,
+    UserProfileComponent,
+    CenterSearchComponent
   ],
   imports: [
     BrowserModule,

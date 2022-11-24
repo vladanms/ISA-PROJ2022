@@ -1,0 +1,52 @@
+<mat-card>
+    <mat-card-title>
+        <h1>User profile</h1>
+    </mat-card-title>
+
+    <mat-card-content>
+        <form>
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input type = "string" name = "name">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Surname</mat-label>
+                <input type = "string" name = "surname">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Address</mat-label>
+                <input type = "string" name = "address">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>City</mat-label>
+                <input type = "string" name = "city">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Country</mat-label>
+                <input type = "string" name = "Country">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Phone</mat-label>
+                <input type = "int" name = "phone">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Gender</mat-label>
+                <select name="gender" matNativeControl required>
+                    <option [ngValue]="0">M</option>
+                    <option [ngValue]="1">F</option>
+                </select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Occupation</mat-label>
+                <input type = "string" name = "occupation">
+            </mat-form-field>
+
+            <button mat-flat-button color="primary" (click)="save()">
+                Save
+            </button>
+            <button mat-flat-button color="primary" (click)="cancel()">
+                Cancel
+            </button>
+        </form>
+    </mat-card-content>
+</mat-card>

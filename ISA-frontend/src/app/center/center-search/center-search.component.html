@@ -1,0 +1,26 @@
+<mat-card>
+    <mat-card-title>
+        <h1>Center search</h1>
+    </mat-card-title>
+
+    <mat-card-content>
+        <form>
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input type = "string" name = "name">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Address</mat-label>
+                <input type = "string" name = "address">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Avg.Grade</mat-label>
+                <input type = "float" name = "avgGrade">
+            </mat-form-field>
+
+            <button mat-flat-button color="primary" (click)="submit()">
+                Search
+            </button>
+        </form>
+    </mat-card-content>
+</mat-card>
