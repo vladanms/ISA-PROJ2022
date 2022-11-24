@@ -19,14 +19,14 @@ public class UserDTO {
 	private UserType type;
 	private String occupation;
 	private String company;
-	
-	/*public UserDTO(User user) {
-		this(user.getId(), user.getName(), user.getSurname(), user.getEmail(), user.getJmbg(), user.getPassword(), user.getAddress(), user.getCity(), user.getCountry(), user.getPhone(), user.getGender(), user.getType(), user.getOccupation(), user.getCity());
-	}*/
-	
-	public UserDTO(String name, String surname, String email, String jmbg, String password, String address,
-			String city, String country, String phone, Gender gender, UserType type, String occupation,
-			String company) {
+
+	public UserDTO() {
+		super();
+	}
+
+
+	public UserDTO(String name, String surname, String email, String jmbg, String password, String address, String city,
+			String country, String phone, Gender gender, UserType type, String occupation, String company) {
 		super();
 		this.name = name;
 		this.surname = surname;
@@ -42,6 +42,7 @@ public class UserDTO {
 		this.occupation = occupation;
 		this.company = company;
 	}
+
 
 	public String getName() {
 		return name;

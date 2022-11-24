@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import main.dto.UserDTO;
 import main.model.User;
+import main.model.UserRegistered;
 import main.model.UserType;
+import main.model.UserCategory;
 import main.service.UserService;
 
 @RestController
-@RequestMapping(value = "api/users")
+@RequestMapping(value = "user")
 public class UserController {
 
 	@Autowired
@@ -35,7 +37,7 @@ public class UserController {
 	@PostMapping("/registration")
 	public ResponseEntity<User> saveUser(@RequestBody UserDTO userDTO) {
 
-		User user = new User();
+		UserRegistered user = new UserRegistered();
 		
 		user.setName(userDTO.getName());
 		user.setSurname(userDTO.getSurname());
@@ -50,6 +52,7 @@ public class UserController {
 		user.setType(UserType.Registered);
 		user.setOccupation(userDTO.getOccupation());
 		user.setCompany(userDTO.getCompany());
+		user.setPoints(0);
 		
 		if(userService.register(user)) {
 			return new ResponseEntity<>(HttpStatus.CREATED);
