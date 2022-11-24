@@ -19,7 +19,7 @@ import main.service.CenterService;
 import main.service.UserService;
 
 @RestController
-@RequestMapping(value = "api/centers")
+@RequestMapping(value = "center")
 public class CenterController {
 
 	@Autowired
