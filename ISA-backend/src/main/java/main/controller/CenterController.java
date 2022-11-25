@@ -1,5 +1,6 @@
 package main.controller;
 
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class CenterController {
 
 	
 	@PostMapping("/newCenter")
-	public ResponseEntity<User> saveCenter(@RequestBody CenterDTO centerDTO) {
+	public ResponseEntity<Center> saveCenter(@RequestBody CenterDTO centerDTO) {
 
 		Random id = new Random();
 		Center center = new Center(
@@ -46,10 +47,10 @@ public class CenterController {
 	}
 	
 	@PostMapping("/findCenter")
-	public ResponseEntity<User> findCenter(@RequestBody CenterDTO centerDTO)
+	public ResponseEntity<List<Center>> findCenter(@RequestBody CenterDTO centerDTO)
 	{
-		centerService.FindCenter(centerDTO);
-		return new ResponseEntity<>(HttpStatus.OK);
+		List<Center> centers = centerService.FindCenter(centerDTO);
+		return new ResponseEntity<>(centers, HttpStatus.OK);
 	}
 
 }
