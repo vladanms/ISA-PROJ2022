@@ -44,5 +44,12 @@ public class CenterController {
 			return new ResponseEntity<>(HttpStatus.OK);
 
 	}
+	
+	@PostMapping("/findCenter")
+	public ResponseEntity<User> findCenter(@RequestBody CenterDTO centerDTO)
+	{
+		centerService.FindCenter(centerDTO);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 
 }

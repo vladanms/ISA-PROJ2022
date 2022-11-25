@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import main.dto.UserDTO;
 import main.model.User;
 import main.repository.UserRepository;
 
@@ -34,14 +35,14 @@ public class UserService {
 	
 	public Boolean edit(User user)
 	{
-		Optional<User> toEditResponse = userRepository.findById(user.getId());
-		User toEdit = toEditResponse.get(); 
+		User toEditResponse = userRepository.findByEmail(user.getEmail());
+		User toEdit = toEditResponse; 
 		if(toEdit == null)
 		{
 			return false;
 		}
 
-		userRepository.save(user);
+		//userRepository.save(user);
 		return true;
 	}
 	
@@ -58,4 +59,5 @@ public class UserService {
 		}
 		return false;
 	}
+	
 }
