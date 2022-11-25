@@ -1,5 +1,6 @@
 package main.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,14 @@ public class CenterService {
 	{
 		
 	}
+	
+	public ArrayList<Center> findAll(){
+        ArrayList<Center> centers = new ArrayList<Center>();
+        for (Center c: centerRepository.findAll()) {
+        	centers.add(c);
+        }
+        return centers;
+    }
 	
 	public List<Center> FindCenter(CenterDTO centerDTO)
 	{

@@ -1,11 +1,13 @@
 package main.service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import main.dto.UserDTO;
+import main.model.Center;
 import main.model.User;
 import main.repository.UserRepository;
 
@@ -59,5 +61,13 @@ public class UserService {
 		}
 		return false;
 	}
+	
+	public ArrayList<User> findAll(){
+        ArrayList<User> users = new ArrayList<User>();
+        for (User u: userRepository.findAll()) {
+        	users.add(u);
+        }
+        return users;
+    }
 	
 }
