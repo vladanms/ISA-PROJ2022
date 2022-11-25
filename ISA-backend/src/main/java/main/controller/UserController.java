@@ -55,6 +55,7 @@ public class UserController {
 		user.setPoints(0);
 		
 		if(userService.register(user)) {
+			loggedInUser = user;
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		}
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -71,19 +72,26 @@ public class UserController {
 	}
 	
 	@PostMapping("/editProfile")
-	public ResponseEntity<User> editUser(@RequestBody User user)
+	public ResponseEntity<User> editUser(@RequestBody UserDTO user)
 	{
+		User toEdit = userService.findByEmail(user.getEmail());
+		if(toEdit == null)
+		{
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 		
-		/*
 		toEdit.setName(user.getName());
 		toEdit.setSurname(user.getSurname());
+		toEdit.setJmbg(user.getJmbg());
 		toEdit.setAddress(user.getAddress());
 		toEdit.setPhone(user.getPhone());
 		toEdit.setCity(user.getCity());
 		toEdit.setCountry(user.getCountry());
 		toEdit.setGender(user.getGender());
-		*/
-		if(userService.edit(user)) {
+		toEdit.setOccupation(user.getOccupation());
+		toEdit.setCompany(user.getCompany());
+
+		if(userService.edit(toEdit)) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
