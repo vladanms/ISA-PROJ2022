@@ -52,10 +52,10 @@ public class CenterController {
 	@GetMapping("/getAll")
     public @ResponseBody ArrayList<Center> getAll(){ return centerService.findAll(); }
 	
-	@PostMapping("/findCenter")
-	public ResponseEntity<List<Center>> findCenter(@RequestBody CenterDTO centerDTO)
+	@GetMapping("/findCenter")
+	public ResponseEntity<ArrayList<Center>> findCenter(@RequestBody CenterDTO centerDTO)
 	{
-		List<Center> centers = centerService.FindCenter(centerDTO);
+		ArrayList<Center> centers = centerService.FindCenter(centerDTO);
 		return new ResponseEntity<>(centers, HttpStatus.OK);
 	}
 

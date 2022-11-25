@@ -34,10 +34,15 @@ public class CenterService {
         return centers;
     }
 	
-	public List<Center> FindCenter(CenterDTO centerDTO)
+	public ArrayList<Center> FindCenter(CenterDTO centerDTO)
 	{
+		ArrayList<Center> returnList = new ArrayList<Center>();
 		List<Center> centers = centerRepository.findByCustomParameters(centerDTO.getName(), centerDTO.getAddress(), centerDTO.getAvgGrade());
+		for(Center center: centers)
+		{
+			returnList.add(center);
+		}
 		
-		return centers;
+		return returnList;
 	}
 }
