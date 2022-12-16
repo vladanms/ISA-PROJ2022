@@ -29,6 +29,6 @@ export class UserRegistrationService {
       company: company
     };
 
-    return this.http.post<any>(this.apiHost + 'user/register', userDTO, {headers: this.headers});
+    return this.http.post<any>(this.apiHost + 'user/registration', userDTO, {headers: this.headers});
   }
 }

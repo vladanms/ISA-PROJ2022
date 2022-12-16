@@ -23,13 +23,13 @@ export class UserRegistrationComponent implements OnInit {
   occupation: string = "";
   company: string = "";
 
-  constructor(/*private userRegistrationService: UserRegistrationService, private router: Router, private toastr: ToastrService*/) { }
+  constructor(private userRegistrationService: UserRegistrationService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
 
   submit(){
-    /*this.userRegistrationService.register(this.name, this.surname, this.email, this.password, this.jmbg,
+    this.userRegistrationService.register(this.name, this.surname, this.email, this.password, this.jmbg,
       this.address, this.city, this.country, this.phone, this.gender, this.occupation, this.company).subscribe(
       {
         next: (res) => {
@@ -38,12 +38,12 @@ export class UserRegistrationComponent implements OnInit {
         },
         error: (e) => {this.showError(e.error.Message, e.error.Title);
           console.log(e);}
-    });*/
+    });
   }
   showSuccess() {
-    //this.toastr.success('Blood request sent!', 'Clinic application');
+    this.toastr.success('User Registered', 'Clinic application');
   }
   showError(message: string, title: string) {
-    //this.toastr.error(message, title);
+    this.toastr.error(message, title);
   }
 }
