@@ -4,12 +4,14 @@ import { UserRegistrationComponent } from './center/user-registration/user-regis
 import { CenterSearchComponent } from './center/center-search/center-search.component';
 import { UserProfileComponent } from './center/user-profile/user-profile.component';
 import { UserLoginComponent } from './center/user-login/user-login.component';
+import { CentersComponent } from './center/centers/centers.component';
 
 const routes: Routes = [
   { path: 'user-registration', component: UserRegistrationComponent },
   { path: 'center-search', component: CenterSearchComponent},
   { path: 'user-profile', component: UserProfileComponent},
-  { path: 'user-login', component: UserLoginComponent }
+  { path: 'user-login', component: UserLoginComponent },
+  { path: 'centers', component: CentersComponent }
 ];
 
 @NgModule({

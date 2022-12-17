@@ -25,6 +25,7 @@ import { UserRegistrationComponent } from './center/user-registration/user-regis
 import { UserProfileComponent } from './center/user-profile/user-profile.component';
 import { CenterSearchComponent } from './center/center-search/center-search.component';
 import { UserLoginComponent } from './center/user-login/user-login.component';
+import { CentersComponent } from './center/centers/centers.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { UserLoginComponent } from './center/user-login/user-login.component';
     UserRegistrationComponent,
     UserProfileComponent,
     CenterSearchComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    CentersComponent
   ],
   imports: [
     CommonModule,

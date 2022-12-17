@@ -43,7 +43,13 @@ public class UserController {
 	loggedInUser = userService.findByEmail(loggedInEmail);
 	return loggedInUser;
 	}*/
-	
+	@PostMapping("/login")
+	public ResponseEntity<String> logIn(@RequestBody UserDTO userDTO){
+		if(userService.login(userDTO)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		return new ResponseEntity<>("error", HttpStatus.BAD_REQUEST);
+	}
 	
 	@PostMapping("/registration")
 	public ResponseEntity<User> saveUser(@RequestBody UserDTO userDTO) throws MessagingException, UnsupportedEncodingException {
@@ -80,17 +86,6 @@ public class UserController {
 	        return "verify_fail";
 	    }
 	}
-	
-	@PostMapping("/login")
-	public ResponseEntity<User> login(@RequestBody String email, String password)
-	{
-		if(userService.login(email, password)) {
-			loggedInUser = userService.findByEmail(email);
-			return new ResponseEntity<>(HttpStatus.OK);
-		}
-		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-	}
-	
 	
 	@PutMapping("/editProfile")
 	public ResponseEntity<User> editUser(@RequestBody UserDTO user)
