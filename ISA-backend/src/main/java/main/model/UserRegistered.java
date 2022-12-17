@@ -13,6 +13,35 @@ public class UserRegistered extends User {
 	@Column(name = "userCategory", nullable = false)
 	private UserCategory category;
 	
+	@Column(name = "verificationCode", length = 64)
+    private String verificationCode;
+     
+    /**
+	 * @return the verificationCode
+	 */
+	public String getVerificationCode() {
+		return verificationCode;
+	}
+	/**
+	 * @param verificationCode the verificationCode to set
+	 */
+	public void setVerificationCode(String verificationCode) {
+		this.verificationCode = verificationCode;
+	}
+	/**
+	 * @return the enabled
+	 */
+	public boolean isEnabled() {
+		return enabled;
+	}
+	/**
+	 * @param enabled the enabled to set
+	 */
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	private boolean enabled;
+	
 	public UserRegistered() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -1,8 +1,12 @@
 package main.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -42,7 +46,7 @@ public class UserController {
 	
 	
 	@PostMapping("/registration")
-	public ResponseEntity<User> saveUser(@RequestBody UserDTO userDTO) {
+	public ResponseEntity<User> saveUser(@RequestBody UserDTO userDTO) throws MessagingException, UnsupportedEncodingException {
 
 		UserRegistered user = new UserRegistered();
 		
@@ -66,6 +70,15 @@ public class UserController {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	}
+	
+	@GetMapping("/verify")
+	public String verifyUser(@Param("code") String code) {
+	    if (userService.verify(code)) {
+	        return "verify_success";
+	    } else {
+	        return "verify_fail";
+	    }
 	}
 	
 	@PostMapping("/login")
