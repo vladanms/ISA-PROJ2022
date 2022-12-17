@@ -24,6 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { UserRegistrationComponent } from './center/user-registration/user-registration.component';
 import { UserProfileComponent } from './center/user-profile/user-profile.component';
 import { CenterSearchComponent } from './center/center-search/center-search.component';
+import { UserLoginComponent } from './center/user-login/user-login.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { CenterSearchComponent } from './center/center-search/center-search.comp
     AppComponent,
     UserRegistrationComponent,
     UserProfileComponent,
-    CenterSearchComponent
+    CenterSearchComponent,
+    UserLoginComponent
   ],
   imports: [
     CommonModule,

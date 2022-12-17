@@ -7,12 +7,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ISA-frontend';
 
   constructor(private router: Router) {
   }
 
-  register(){
-    this.router.navigate(['/user-registration']);
-  }
 }

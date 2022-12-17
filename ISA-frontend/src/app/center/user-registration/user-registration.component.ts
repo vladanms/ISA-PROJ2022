@@ -33,7 +33,7 @@ export class UserRegistrationComponent implements OnInit {
       this.address, this.city, this.country, this.phone, this.gender, this.occupation, this.company).subscribe(
       {
         next: (res) => {
-          this.router.navigate(['']);
+          this.router.navigate(['user-login']);
           this.showSuccess();
         },
         error: (e) => {this.showError(e.error.Message, e.error.Title);
