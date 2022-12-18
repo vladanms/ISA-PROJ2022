@@ -1,6 +1,6 @@
 package main.model;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,30 +26,30 @@ public class Center {
 	@Column(name = "centerDescription", nullable = false)
 	private String description;
 	//@Column(name = "centerGrade", nullable = false)
-	//private List<Float> grade;
+	//private ArrayList<Float> grade;
 	@Column(name = "centerAvgGrade", nullable = false)
 	private Float avgGrade;
 	
-	//@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	//private List<Appointment> freeAppointments;
+	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private ArrayList<Appointment> Appointments;
 	
 	//@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	//private List<User> admins;
+	//private ArrayList<User> admins;
 	
 	public Center() {
 		super();
 	}
 
-	public Center(Long id, String name, String address, String description, Float avgGrade) {
+	public Center(Long id, String name, String address, String description, ArrayList<Appointment> appointments, Float avgGrade) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.address = address;
 		this.description = description;
 		this.avgGrade = avgGrade;
-		/*this.grade = grade;
-		this.freeAppointments = freeAppointments;
-		this.admins = admins;
+		//this.grade = grade;
+		Appointments = Appointments;
+		/*this.admins = admins;
 		if(this.grade.size() > 0)
 		{
 			for(int i = 0; i <= this.grade.size(); i++)
@@ -96,11 +96,11 @@ public class Center {
 		this.description = description;
 	}
 
-	/*public List<Float> getGrade() {
+	/*public ArrayList<Float> getGrade() {
 		return grade;
 	}
 
-	public void setGrade(List<Float> grade) {
+	public void setGrade(ArrayList<Float> grade) {
 		this.grade = grade;
 		if(this.grade.size() > 0)
 		{
@@ -124,19 +124,19 @@ public class Center {
 		this.avgGrade = avgGrade;
 	}
 
-	/*public List<Appointment> getFreeAppointments() {
-		return freeAppointments;
+	public ArrayList<Appointment> getAppointments() {
+		return Appointments;
 	}
 
-	public void setFreeAppointments(List<Appointment> freeAppointments) {
-		this.freeAppointments = freeAppointments;
+	public void setAppointments(ArrayList<Appointment> Appointments) {
+		this.Appointments = Appointments;
 	}
 
-	public List<User> getAdmins() {
+	/*public ArrayList<User> getAdmins() {
 		return admins;
 	}
 
-	public void setAdmins(List<User> admins) {
+	public void setAdmins(ArrayList<User> admins) {
 		this.admins = admins;
 	}
 	

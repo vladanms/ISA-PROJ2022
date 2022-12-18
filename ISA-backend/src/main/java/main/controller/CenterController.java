@@ -39,12 +39,14 @@ public class CenterController {
 					centerDTO.getName(),
 					centerDTO.getAddress(),
 					centerDTO.getDescription(),
+					centerDTO.getAppointments(),
 					centerDTO.getAvgGrade()
 					//centerDTO.getGrade(),
 					//centerDTO.getFreeAppointments(),
 					//centerDTO.getAdmins()
 				);
 		
+			centerService.Add(center);
 			return new ResponseEntity<>(HttpStatus.OK);
 
 	}

@@ -1,7 +1,8 @@
 package main.dto;
 
-import java.util.List;
+import java.util.ArrayList;
 
+import main.model.Appointment;
 import main.model.User;
 
 public class CenterDTO {
@@ -9,20 +10,20 @@ public class CenterDTO {
 	private String name;
 	private String address;
 	private String description;
-	//private List<Float> grade;
-	//private List<Appointment> freeAppointments;
-	//private List<User> admins;
+	//private ArrayList<Float> grade;
+	private ArrayList<Appointment> appointments;
+	//private ArrayList<User> admins;
 	private Float avgGrade;
 	
-	public CenterDTO(Long id, String name, String address, String description, Float avgGrade) {
+	public CenterDTO(Long id, String name, String address, String description, Float avgGrade, ArrayList<Appointment> appointments) {
 		super();
 		this.name = name;
 		this.address = address;
 		this.description = description;
 		this.avgGrade = avgGrade;
-		/*this.grade = grade;
-		this.freeAppointments = freeAppointments;
-		this.admins = admins;
+		//this.grade = grade;
+		this.appointments = appointments;
+		/*this.admins = admins;
 		if(this.grade.size() > 0)
 		{
 			for(int i = 0; i <= this.grade.size(); i++)
@@ -61,11 +62,11 @@ public class CenterDTO {
 		this.description = description;
 	}
 
-	/*public List<Float> getGrade() {
+	/*public ArrayList<Float> getGrade() {
 		return grade;
 	}
 
-	public void setGrade(List<Float> grade) {
+	public void setGrade(ArrayList<Float> grade) {
 		this.grade = grade;
 	}*/
 
@@ -77,19 +78,19 @@ public class CenterDTO {
 		this.avgGrade = avgGrade;
 	}
 
-	/*public List<Appointment> getFreeAppointments() {
-		return freeAppointments;
+	public ArrayList<Appointment> getAppointments() {
+		return appointments;
 	}
 
-	public void setFreeAppointments(List<Appointment> freeAppointments) {
-		this.freeAppointments = freeAppointments;
+	public void setFreeAppointments(ArrayList<Appointment> Appointments) {
+		this.appointments = appointments;
 	}
 
-	public List<User> getAdmins() {
+	/*public ArrayList<User> getAdmins() {
 		return admins;
 	}
 
-	public void setAdmins(List<User> admins) {
+	public void setAdmins(ArrayList<User> admins) {
 		this.admins = admins;
 	}*/
 	
