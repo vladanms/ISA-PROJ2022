@@ -6,8 +6,13 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 
 @Entity
-@Table(name="TYPE")
-public class UserType{
+//@Table(name="TYPE")
+public enum UserType {
+	Registered,
+	Admin,
+	Staff,
+	Guest	
+/*public class UserType{
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,7 +25,6 @@ public class UserType{
     String name;
 
     @JsonIgnore
-    @Override
     public String getAuthority() {
         return name;
     }
@@ -40,6 +44,6 @@ public class UserType{
 
     public void setId(Long id) {
         this.id = id;
-    }
+    }*/
 
 }
