@@ -218,4 +218,10 @@ public class User {
 		this.company = company;
 	}
 	
+    @JsonIgnore
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.userType;
+    }
+	
 }

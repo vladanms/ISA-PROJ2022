@@ -36,13 +36,24 @@ public class UserController {
 	private UserService userService;
 	User loggedInUser = new User();
 	
-	/*public User GetLoggedInUser(){
-		
-	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	String loggedInEmail = authentication.getName();	
-	loggedInUser = userService.findByEmail(loggedInEmail);
-	return loggedInUser;
+	/*
+	@PostMapping("/login")
+	public ResponseEntity<String> <UserTokenState> createAuthenticationToken(
+		@RequestBody JwtAuthenticationRequest authenticationRequest, HttpServletResponse response) {
+
+		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+				authenticationRequest.getUsername(), authenticationRequest.getPassword()));
+
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+
+		User user = (User) authentication.getPrincipal();
+		String jwt = tokenUtils.generateToken(user.getUsername());
+		int expiresIn = tokenUtils.getExpiredIn();
+
+		return ResponseEntity.ok(new UserTokenState(jwt, expiresIn));
 	}*/
+
+
 	@PostMapping("/login")
 	public ResponseEntity<String> logIn(@RequestBody UserDTO userDTO){
 		if(userService.login(userDTO)) {

@@ -25,7 +25,7 @@ import main.model.*;
 import main.service.AppointmentService;
 
 @RestController
-@RequestMapping(value = "appointments")
+@RequestMapping(value = "appointment")
 public class AppointmentController {
 
     User loggedInUser = new User();
@@ -34,7 +34,7 @@ public class AppointmentController {
 	private AppointmentService appointmentService;
 
 
-    @PostMapping("/createAppointment")
+    @PostMapping("/create")
     public ResponseEntity<Appointment> createAppointment(@RequestBody AppointmentDTO appointmentDTO)
     {
         Appointment appointment = new Appointment
@@ -50,7 +50,7 @@ public class AppointmentController {
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @PutMapping("/scheduleAppointment")
+    @PutMapping("/schedule")
     public ResponseEntity<Appointment> scheduleAppointment(@RequestBody AppointmentDTO appointmentDTO)
     {
         Appointment appointment = new Appointment
@@ -67,7 +67,7 @@ public class AppointmentController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @PutMapping("/cancelAppointment")
+    @PutMapping("/cancel")
     public ResponseEntity<Appointment> cancelAppointment(@RequestBody AppointmentDTO appointmentDTO)
     {
         Appointment appointment = new Appointment
