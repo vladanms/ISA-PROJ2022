@@ -1,26 +1,31 @@
 package main.model;
 
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-
+@Entity
 public class Appointment {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "center", nullable = false)
+    @ManyToOne(targetEntity = Center.class, fetch = FetchType.EAGER)
     private Center center;
 
     @Column(name = "time", nullable = false)
     private LocalDateTime time;
 
-    @Column(name = "user", nullable = true)
+    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     private User user;
 
     public Appointment(Center center, LocalDateTime time, User user) {

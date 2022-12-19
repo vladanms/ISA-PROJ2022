@@ -14,6 +14,7 @@ import main.dto.AppointmentDTO;
 import main.model.*;
 import main.repository.AppointmentRepository;
 
+@Service
 public class AppointmentService {
     
 	@Autowired
@@ -44,7 +45,7 @@ public class AppointmentService {
             //24 sata minimum
         }
         
-        List<Appointment> userAppointments = appointmentRepository.FindByUser(user);
+        List<Appointment> userAppointments = appointmentRepository.findByUser(user);
         for(int i = 0; i < userAppointments.size(); i++)
         {
             if(Duration.between(LocalDateTime.now(), userAppointments.get(i).getTime()).toDays() < 180)
@@ -62,12 +63,12 @@ public class AppointmentService {
 
     public List<Appointment> getAllByTime(LocalDateTime time)
     {
-        return appointmentRepository.FindByTime(time);
+        return appointmentRepository.findByTime(time);
     }
 
     public List<Appointment> getAllByCenter(Center center)
     {
-        return appointmentRepository.FindByCenter(center);
+        return appointmentRepository.findByCenter(center);
     }
 
     public boolean cancel(Appointment appointment)

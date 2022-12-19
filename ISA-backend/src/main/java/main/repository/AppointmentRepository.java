@@ -11,10 +11,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+@Repository
 public interface AppointmentRepository extends JpaRepository<Appointment, Long>{
 
-    List<Appointment> FindByTime(LocalDateTime time); 
-    List<Appointment> FindByTimeAndUser(LocalDateTime time, User user); 
-    List<Appointment> FindByUser(User user); 
-    List<Appointment> FindByCenter(Center center); 
+    List<Appointment> findByTime(LocalDateTime time); 
+    List<Appointment> findByTimeAndUser(LocalDateTime time, User user); 
+    List<Appointment> findByUser(User user); 
+    List<Appointment> findByCenter(Center center); 
 }

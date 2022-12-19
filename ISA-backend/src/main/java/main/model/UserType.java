@@ -5,7 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
-@Entity
+//@Entity
 //@Table(name="TYPE")
 public enum UserType {
 	Registered,

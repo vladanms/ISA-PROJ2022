@@ -1,6 +1,7 @@
 package main.model;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -30,8 +32,8 @@ public class Center {
 	@Column(name = "centerAvgGrade", nullable = false)
 	private Float avgGrade;
 	
-	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private ArrayList<Appointment> Appointments;
+	@OneToMany(targetEntity = Appointment.class, fetch = FetchType.EAGER)
+	private Set<Appointment> Appointments;
 	
 	//@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	//private ArrayList<User> admins;
@@ -48,7 +50,7 @@ public class Center {
 		this.description = description;
 		this.avgGrade = avgGrade;
 		//this.grade = grade;
-		Appointments = Appointments;
+		//Appointments = Appointments;
 		/*this.admins = admins;
 		if(this.grade.size() > 0)
 		{
@@ -124,13 +126,13 @@ public class Center {
 		this.avgGrade = avgGrade;
 	}
 
-	public ArrayList<Appointment> getAppointments() {
+	/*public ArrayList<Appointment> getAppointments() {
 		return Appointments;
 	}
 
 	public void setAppointments(ArrayList<Appointment> Appointments) {
 		this.Appointments = Appointments;
-	}
+	}*/
 
 	/*public ArrayList<User> getAdmins() {
 		return admins;

@@ -11,13 +11,13 @@ import javax.persistence.Id;
 @Entity
 public class UserAdminCenter extends User {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "userId", unique = true, nullable = false)
-	private Long id;
+	//@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@Column(name = "userId", unique = true, nullable = false)
+	//private Long id;
 
-	@Column(name = "assignedCenters", nullable = false)
-	private Center centers;
+	//@Column(name = "assignedCenters", nullable = false)
+	//private Center centers;
 
 	public UserAdminCenter() {
 		super();
@@ -28,16 +28,16 @@ public class UserAdminCenter extends User {
 			String city, String country, String phone, Gender gender, UserType type, String occupation,
 			String company, Center center) {
 		super(name, surname, email, jmbg, password, address, city, country, phone, gender, type, occupation, company);
-		this.centers = center;
+		//this.centers = center;
 	}
 
-	public Center getCenters() {
+	/*public Center getCenters() {
 		return centers;
 	}
 
 	public void setCenters(Center centers) {
 		this.centers = centers;
-	}
+	}*/
 
 	
 

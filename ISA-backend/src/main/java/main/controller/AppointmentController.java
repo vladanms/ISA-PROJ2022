@@ -25,6 +25,7 @@ import main.model.*;
 import main.service.AppointmentService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "appointment")
 public class AppointmentController {
 
