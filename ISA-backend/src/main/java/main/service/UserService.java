@@ -1,6 +1,7 @@
 package main.service;
 
 import java.io.UnsupportedEncodingException;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -10,10 +11,12 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import main.dto.UserDTO;
 import main.model.Center;
+import main.model.PersonalFile;
 import main.model.User;
 import main.model.UserRegistered;
 import main.repository.UserRepository;
@@ -115,9 +118,15 @@ public class UserService {
 			return false;
 		}
 
-		//userRepository.save(user);
+		userRepository.save(user);
 		return true;
 	}
+	
+/*	public void fillPersonalFile(User user, PersonalFile file)
+	{
+		user.setPersonalFile(file);
+		userRepository.save(user);
+	}*/
 	
 	public Boolean login(String email, String password)
 	{
@@ -139,6 +148,10 @@ public class UserService {
         	users.add(u);
         }
         return users;
+    }
+	
+    public User loggedInUser(Authentication authentication) {
+        return findByEmail(authentication.getName());
     }
 	
 }

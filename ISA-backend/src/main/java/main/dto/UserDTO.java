@@ -1,6 +1,7 @@
 package main.dto;
 
 import main.model.Gender;
+import main.model.PersonalFile;
 import main.model.User;
 import main.model.UserType;
 
@@ -19,6 +20,7 @@ public class UserDTO {
 	private UserType type;
 	private String occupation;
 	private String company;
+    private PersonalFile personalFile;
 
 	public UserDTO() {
 		super();
@@ -41,6 +43,17 @@ public class UserDTO {
 		this.type = type;
 		this.occupation = occupation;
 		this.company = company;
+		this.personalFile = null;
+	}
+
+
+	public PersonalFile getPersonalFile() {
+		return personalFile;
+	}
+
+
+	public void setPersonalFile(PersonalFile personalFile) {
+		this.personalFile = personalFile;
 	}
 
 

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import main.dto.UserDTO;
+import main.model.PersonalFile;
 import main.model.User;
 import main.model.UserRegistered;
 import main.model.UserType;
@@ -57,6 +58,7 @@ public class UserController {
 	@PostMapping("/login")
 	public ResponseEntity<String> logIn(@RequestBody UserDTO userDTO){
 		if(userService.login(userDTO)) {
+			loggedInUser = userService.findByEmail(userDTO.getEmail());
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		return new ResponseEntity<>("error", HttpStatus.BAD_REQUEST);
@@ -119,6 +121,16 @@ public class UserController {
 		toEdit.setCompany(user.getCompany());
 
 		if(userService.edit(toEdit)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	}
+	
+	@PutMapping("/fillPersonalFile")
+	public ResponseEntity<User> editUser(@RequestBody PersonalFile file)
+	{
+		loggedInUser.setPersonalFile(file);
+		if(userService.edit(loggedInUser)) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

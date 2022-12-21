@@ -44,13 +44,17 @@ public class AppointmentService {
             return 2; 
             //24 sata minimum
         }
-        
+        if(user.getPersonalFile() == null)
+        {
+        	return 3;
+        	//mora imati popunjen upitnik
+        }
         List<Appointment> userAppointments = appointmentRepository.findByUser(user);
         for(int i = 0; i < userAppointments.size(); i++)
         {
             if(Duration.between(LocalDateTime.now(), userAppointments.get(i).getTime()).toDays() < 180)
             {
-                return 3;
+                return 4;
                 //mora proci 6 meseci od prethodnog davanja
             }
         }

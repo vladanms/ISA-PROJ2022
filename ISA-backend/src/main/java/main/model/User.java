@@ -54,6 +54,8 @@ public class User {
 	@Column(name = "userCompany", nullable = false)
 	private String company;
 	
+	public PersonalFile personalFile;
+	
 	
 	public User() {
 		super();
@@ -76,8 +78,17 @@ public class User {
 		this.type = type;
 		this.occupation = occupation;
 		this.company = company;
+		this.personalFile = null;
 	}
 
+
+	public PersonalFile getPersonalFile() {
+		return personalFile;
+	}
+
+	public void setPersonalFile(PersonalFile personalFile) {
+		this.personalFile = personalFile;
+	}
 
 	public Long getId() {
 		return id;
