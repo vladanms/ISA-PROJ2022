@@ -5,16 +5,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {
-  MatCard,
-  MatButtonModule,
-  MatInputModule,
-  MatListModule,
-  MatSelectModule,
-  MatSidenavModule,
-  MatCardModule,
-  MatTableModule
-} from "@angular/material";
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -60,9 +56,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MatIconModule,
     MatTooltipModule,
     MatInputModule,
-    MatListModule,
     MatSelectModule,
-    MatSidenavModule,
     MatCardModule,
     MatTableModule,
     FormsModule,

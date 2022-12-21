@@ -16,6 +16,7 @@ export class UserLoginComponent implements OnInit {
   constructor(private userLoginService: UserLoginService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    localStorage.setItem('loggedUserRole', '');
   }
 
   login(){
@@ -27,7 +28,7 @@ export class UserLoginComponent implements OnInit {
           next: (res) => {
             localStorage.setItem('loggedUser', this.email);
             localStorage.setItem('loggedUserRole', 'Registered');
-            this.router.navigate(['centers']);
+            window.location.href = '/centers';
             this.showSuccess();
           },
           error: (e) => {this.showError(e.error.Message, e.error.Title);
