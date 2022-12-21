@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
+  loggedUserRole = localStorage.getItem('loggedUserRole');
+
   constructor(private router: Router) {
   }
 

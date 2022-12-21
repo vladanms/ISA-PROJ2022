@@ -26,6 +26,7 @@ export class UserLoginComponent implements OnInit {
         {
           next: (res) => {
             localStorage.setItem('loggedUser', this.email);
+            localStorage.setItem('loggedUserRole', 'Registered');
             this.router.navigate(['centers']);
             this.showSuccess();
           },

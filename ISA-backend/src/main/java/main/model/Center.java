@@ -32,8 +32,8 @@ public class Center {
 	@Column(name = "centerAvgGrade", nullable = false)
 	private Float avgGrade;
 	
-	@OneToMany(targetEntity = Appointment.class, fetch = FetchType.EAGER)
-	private Set<Appointment> Appointments;
+	//@OneToMany(targetEntity = Appointment.class, fetch = FetchType.EAGER)
+	//private Set<Appointment> Appointments;
 	
 	//@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	//private ArrayList<User> admins;
