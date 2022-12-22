@@ -2,6 +2,7 @@ package main.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -30,6 +31,11 @@ public class AppointmentService {
         return true;
 	}
 
+	public boolean scheduleFreeAppointment(Appointment appointment)
+    {
+		appointmentRepository.save(appointment);
+		return true;
+    }
 
     public int schedule(Appointment appointment, User user)
     {
@@ -93,6 +99,10 @@ public class AppointmentService {
         	appointments.add(a);
         }
         return appointments;
+    }
+    
+    public Optional<Appointment> getById(Long id) {
+    	return appointmentRepository.findById(id);
     }
 
 }

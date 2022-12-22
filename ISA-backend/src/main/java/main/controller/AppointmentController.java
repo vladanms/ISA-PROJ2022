@@ -2,6 +2,7 @@ package main.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javax.mail.MessagingException;
 
@@ -23,9 +24,11 @@ import org.springframework.web.bind.annotation.RestController;
 import main.dto.AppointmentDTO;
 import main.dto.AppointmentDTOView;
 import main.dto.CenterDTOView;
+import main.dto.FreeAppointmentScheduleDTO;
 import main.model.*;
 import main.service.AppointmentService;
 import main.service.CenterService;
+import main.service.UserService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -36,6 +39,9 @@ public class AppointmentController {
     
     @Autowired
 	private AppointmentService appointmentService;
+    
+    @Autowired
+	private UserService userService;
 
     @PostMapping("/create")
     public ResponseEntity<Appointment> createAppointment(@RequestBody AppointmentDTO appointmentDTO)
@@ -94,7 +100,7 @@ public class AppointmentController {
     public @ResponseBody ArrayList<AppointmentDTOView> getFreeAppointments(@Param("center") String center){ 
 		ArrayList<Appointment> appointments = appointmentService.getAll();
 		ArrayList<AppointmentDTOView> appointmentDTOs = new ArrayList<AppointmentDTOView>();
-		
+
 		for(Appointment a : appointments){
 			if(a.getCenter().getId().equals(Long.parseLong(center)) && a.getUser() == null) {
 				AppointmentDTOView app = new AppointmentDTOView();
@@ -109,19 +115,50 @@ public class AppointmentController {
 		return appointmentDTOs;
 	}
     
-    @PostMapping("/getScheduledAppointments")
-    public @ResponseBody ArrayList<AppointmentDTOView> getScheduledAppointments(@RequestBody String userEmail){ 
+    @PutMapping("/scheduleFreeAppointment")
+    public ResponseEntity<Appointment> scheduleFreeAppointment(@RequestBody FreeAppointmentScheduleDTO fasDTO)
+    {
+    	Optional<Appointment> a = appointmentService.getById(Long.parseLong(fasDTO.getAppointmentId()));
+    	if(a.get() == null) {
+    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	}
+    	a.get().setUser(userService.findByEmail(fasDTO.getEmail()));
+    	appointmentService.scheduleFreeAppointment(a.get());
+    	return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @PutMapping("/cancelFreeAppointment")
+    public ResponseEntity<Appointment> cancelFreeAppointment(@RequestBody FreeAppointmentScheduleDTO fasDTO)
+    {
+    	Optional<Appointment> a = appointmentService.getById(Long.parseLong(fasDTO.getAppointmentId()));
+    	if(a.get() == null) {
+    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	}
+    	a.get().setUser(null);
+    	appointmentService.scheduleFreeAppointment(a.get());
+    	return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @GetMapping("/getAll")
+    public @ResponseBody ArrayList<Appointment> getAll(){ 
+		return appointmentService.getAll();
+    }
+    
+    @GetMapping("/getScheduledAppointments")
+    public @ResponseBody ArrayList<AppointmentDTOView> getScheduledAppointments(@Param("user") String user){ 
 		ArrayList<Appointment> appointments = appointmentService.getAll();
 		ArrayList<AppointmentDTOView> appointmentDTOs = new ArrayList<AppointmentDTOView>();
 		
 		for(Appointment a : appointments){
-			if(a.getUser().getEmail().equals(userEmail)) {
-				AppointmentDTOView app = new AppointmentDTOView();
-				app.setId(a.getId().intValue());
-				app.setCenterName(a.getCenter().getName());
-				app.setDate(a.getDate().toString());
-				app.setTime(a.getTime().toString());
-				appointmentDTOs.add(app);
+			if(a.getUser() != null) {
+				if(a.getUser().getEmail().equals(user)) {
+					AppointmentDTOView app = new AppointmentDTOView();
+					app.setId(a.getId().intValue());
+					app.setCenterName(a.getCenter().getName());
+					app.setDate(a.getDate().toString());
+					app.setTime(a.getTime().toString());
+					appointmentDTOs.add(app);
+				}
 			}
 		}
 		
