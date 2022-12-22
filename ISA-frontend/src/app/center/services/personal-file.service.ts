@@ -7,7 +7,7 @@ import { EmailValidator } from '@angular/forms';
   providedIn: 'root'
 })
 
-export class UerPersonalFileService {
+export class PersonalFileService {
     apiHost: string = 'http://localhost:8091/';
     headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   
@@ -34,6 +34,6 @@ export class UerPersonalFileService {
         termsAndConditions: termsAndConditions,
       };
   
-      return this.http.post<any>(this.apiHost + 'user/fillPersonalFile', personalFile, {headers: this.headers});
+      return this.http.put<any>(this.apiHost + 'user/fillPersonalFile', personalFile, {headers: this.headers});
     }
 }

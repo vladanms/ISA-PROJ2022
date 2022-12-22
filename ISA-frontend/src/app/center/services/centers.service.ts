@@ -18,4 +18,8 @@ export class CentersService {
   getCenters(): Observable<centerDTO[]> {
     return this.http.get<centerDTO[]>(this.apiHost + 'center/getAllDTO', {headers: this.headers});
   }
+
+  checkPersonalFile(email:string): Observable<any>{
+    return this.http.post<any>(this.apiHost + 'user/checkPersonalFile', email, {headers: this.headers});
+  }
 }

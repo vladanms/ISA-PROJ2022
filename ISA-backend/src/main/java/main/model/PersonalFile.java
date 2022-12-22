@@ -16,6 +16,8 @@ public class PersonalFile {
 	
 	public String fullName;
 	
+	public String email;
+	
 	public String JMBG;
 
 	public String address;
@@ -46,14 +48,19 @@ public class PersonalFile {
 	
 	
 	
-	public PersonalFile(int serialNo, String fullName, String jMBG, String address, String phone, String company,
+	public PersonalFile() {
+		super();
+	}
+
+	public PersonalFile(int serialNo, String fullName, String jMBG, String email, String address, String phone, String company,
 			String occupation, int previousDonationsNo, boolean alreadyDonated, boolean donationRefused,
 			boolean dangerousOccupation, boolean prescriptionMeds, boolean allergies, boolean chronicIllness,
 			boolean termsAndConditions) {
 		super();
 		this.serialNo = serialNo;
 		this.fullName = fullName;
-		JMBG = jMBG;
+		this.JMBG = jMBG;
+		this.email = email;
 		this.address = address;
 		this.phone = phone;
 		this.company = company;
@@ -66,6 +73,14 @@ public class PersonalFile {
 		this.allergies = allergies;
 		this.chronicIllness = chronicIllness;
 		this.termsAndConditions = termsAndConditions;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public int getSerialNo() {

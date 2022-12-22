@@ -1,5 +1,6 @@
 package main.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -56,7 +57,7 @@ public class User {
 	@Column(name = "userCompany", nullable = false)
 	private String company;
 	
-	@OneToOne(targetEntity = PersonalFile.class, fetch = FetchType.EAGER)
+	@OneToOne(targetEntity = PersonalFile.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public PersonalFile personalFile;
 	
 	

@@ -26,7 +26,21 @@ export class CentersComponent implements OnInit {
   }
 
   public schedule(id: any){
-
+    this.centersService.checkPersonalFile(localStorage.getItem('loggedUser')).subscribe(
+      {next: (res) => {
+        window.location.href = '';
+        this.showSuccess();
+      },
+      error: (e) => {this.showError('Fill out your personal file first.', 'Clinic application');
+        console.log(e);}
+      }
+    )
   }
 
+  showSuccess() {
+    this.toastr.success('success', 'Clinic application');
+  }
+  showError(message: string, title: string) {
+    this.toastr.error(message, title);
+  }
 }

@@ -129,8 +129,18 @@ public class UserController {
 	@PutMapping("/fillPersonalFile")
 	public ResponseEntity<User> editUser(@RequestBody PersonalFile file)
 	{
+		loggedInUser = userService.findByEmail(file.getEmail());
 		loggedInUser.setPersonalFile(file);
 		if(userService.edit(loggedInUser)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	}
+	
+	@PostMapping("/checkPersonalFile")
+    public ResponseEntity<User> checkPersonalFile(@RequestBody String email){
+		User u = userService.findByEmail(email);
+		if(u.getPersonalFile() != null) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

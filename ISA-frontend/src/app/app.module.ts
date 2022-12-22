@@ -35,6 +35,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
+import { PersonalFileComponent } from './center/personal-file/personal-file.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { MatRadioModule } from '@angular/material/radio';
     UserProfileComponent,
     CenterSearchComponent,
     UserLoginComponent,
-    CentersComponent
+    CentersComponent,
+    PersonalFileComponent
   ],
   imports: [
     CommonModule,
