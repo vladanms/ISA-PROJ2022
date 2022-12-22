@@ -5,29 +5,46 @@ import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class AppointmentDTO {
         
     private Center center;
-    private LocalDateTime time;
+    private LocalDate date;
+    private LocalTime time;
     private User user;
 
-    public AppointmentDTO(Long id, Center center, LocalDateTime time, User user) {
+    public AppointmentDTO(Long id, Center center, LocalDate date, LocalTime time, User user) {
         this.center = center;
+        this.date = date;
         this.time = time;
         this.user = null;
     }
 
-    public LocalDateTime getTime() {
-        return time;
-    }
+	public LocalDate getDate() {
+		return date;
+	}
 
-    public void setTime(LocalDateTime time) {
-        this.time = time;
-    }
 
-    public User getUser() {
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+
+	public LocalTime getTime() {
+		return time;
+	}
+
+
+	public void setTime(LocalTime time) {
+		this.time = time;
+	}
+
+
+	public User getUser() {
         return user;
     }
 

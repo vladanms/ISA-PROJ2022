@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -22,14 +24,18 @@ public class Appointment {
     @ManyToOne(targetEntity = Center.class, fetch = FetchType.EAGER)
     private Center center;
 
+    @Column(name = "date", nullable = false)
+    private LocalDate date;
+    
     @Column(name = "time", nullable = false)
-    private LocalDateTime time;
+    private LocalTime time;
 
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     private User user;
 
-    public Appointment(Center center, LocalDateTime time, User user) {
+    public Appointment(Center center, LocalDate date, LocalTime time, User user) {
         this.center = center;
+        this.date = date;
         this.time = time;
         this.user = null;
     }
@@ -41,12 +47,20 @@ public class Appointment {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    public LocalDate getDate() {
+        return date;
+    }
 
-    public LocalDateTime getTime() {
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalTime getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(LocalTime time) {
         this.time = time;
     }
 

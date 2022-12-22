@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import main.dto.AppointmentDTO;
 import main.model.*;
 import main.service.AppointmentService;
+import main.service.CenterService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -34,13 +35,13 @@ public class AppointmentController {
     @Autowired
 	private AppointmentService appointmentService;
 
-
     @PostMapping("/create")
     public ResponseEntity<Appointment> createAppointment(@RequestBody AppointmentDTO appointmentDTO)
     {
         Appointment appointment = new Appointment
         (
         appointmentDTO.getCenter(),
+        appointmentDTO.getDate(),
         appointmentDTO.getTime(),
         appointmentDTO.getUser()
         );
@@ -57,6 +58,7 @@ public class AppointmentController {
         Appointment appointment = new Appointment
         (
         appointmentDTO.getCenter(),
+        appointmentDTO.getDate(),
         appointmentDTO.getTime(),
         appointmentDTO.getUser()
         );
@@ -74,6 +76,7 @@ public class AppointmentController {
         Appointment appointment = new Appointment
         (
         appointmentDTO.getCenter(),
+        appointmentDTO.getDate(),
         appointmentDTO.getTime(),
         appointmentDTO.getUser()
         );
