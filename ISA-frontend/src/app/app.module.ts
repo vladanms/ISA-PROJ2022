@@ -36,6 +36,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
 import { PersonalFileComponent } from './center/personal-file/personal-file.component';
+import { AppointmentsFreeComponent } from './center/appointments-free/appointments-free.component';
+import { AppointmentsScheduledComponent } from './center/appointments-scheduled/appointments-scheduled.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { PersonalFileComponent } from './center/personal-file/personal-file.comp
     CenterSearchComponent,
     UserLoginComponent,
     CentersComponent,
-    PersonalFileComponent
+    PersonalFileComponent,
+    AppointmentsFreeComponent,
+    AppointmentsScheduledComponent
   ],
   imports: [
     CommonModule,

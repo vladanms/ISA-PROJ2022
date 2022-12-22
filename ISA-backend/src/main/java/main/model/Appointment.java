@@ -32,8 +32,12 @@ public class Appointment {
 
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     private User user;
+    
+    public Appointment() {
+		super();
+	}
 
-    public Appointment(Center center, LocalDate date, LocalTime time, User user) {
+	public Appointment(Center center, LocalDate date, LocalTime time, User user) {
         this.center = center;
         this.date = date;
         this.time = time;

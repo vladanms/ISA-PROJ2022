@@ -35,7 +35,7 @@ export class PersonalFileComponent implements OnInit {
           this.dangerousOccupation, this.prescriptionMeds, this.allergies, this.chronicIllness,
            this.termsAndConditions).subscribe({
           next: (res) => {
-              this.router.navigate(['user-profile']);
+              this.router.navigate(['centers']);
               this.showSuccess();
             },
             error: (e) => {this.showError(e.error.Message, e.error.Title);

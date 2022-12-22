@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import main.dto.AppointmentDTO;
+import main.dto.AppointmentDTOView;
+import main.dto.CenterDTOView;
 import main.model.*;
 import main.service.AppointmentService;
 import main.service.CenterService;
@@ -87,5 +89,43 @@ public class AppointmentController {
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+    
+    @GetMapping("/getFreeAppointments")
+    public @ResponseBody ArrayList<AppointmentDTOView> getFreeAppointments(@Param("center") String center){ 
+		ArrayList<Appointment> appointments = appointmentService.getAll();
+		ArrayList<AppointmentDTOView> appointmentDTOs = new ArrayList<AppointmentDTOView>();
+		
+		for(Appointment a : appointments){
+			if(a.getCenter().getId().equals(Long.parseLong(center)) && a.getUser() == null) {
+				AppointmentDTOView app = new AppointmentDTOView();
+				app.setId(a.getId().intValue());
+				app.setCenterName(a.getCenter().getName());
+				app.setDate(a.getDate().toString());
+				app.setTime(a.getTime().toString());
+				appointmentDTOs.add(app);
+			}
+		}
+		
+		return appointmentDTOs;
+	}
+    
+    @PostMapping("/getScheduledAppointments")
+    public @ResponseBody ArrayList<AppointmentDTOView> getScheduledAppointments(@RequestBody String userEmail){ 
+		ArrayList<Appointment> appointments = appointmentService.getAll();
+		ArrayList<AppointmentDTOView> appointmentDTOs = new ArrayList<AppointmentDTOView>();
+		
+		for(Appointment a : appointments){
+			if(a.getUser().getEmail().equals(userEmail)) {
+				AppointmentDTOView app = new AppointmentDTOView();
+				app.setId(a.getId().intValue());
+				app.setCenterName(a.getCenter().getName());
+				app.setDate(a.getDate().toString());
+				app.setTime(a.getTime().toString());
+				appointmentDTOs.add(app);
+			}
+		}
+		
+		return appointmentDTOs;
+	}
 
 }

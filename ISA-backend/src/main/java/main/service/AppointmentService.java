@@ -85,5 +85,14 @@ public class AppointmentService {
         appointment.setUser(null);
         return true;
     }
+    
+    public ArrayList<Appointment> getAll()
+    {
+    	ArrayList<Appointment> appointments = new ArrayList<Appointment>();
+        for (Appointment a: appointmentRepository.findAll()) {
+        	appointments.add(a);
+        }
+        return appointments;
+    }
 
 }

@@ -25,11 +25,12 @@ export class CentersComponent implements OnInit {
     })
   }
 
-  public schedule(id: any){
+  public schedule(id: any, name:any){
     this.centersService.checkPersonalFile(localStorage.getItem('loggedUser')).subscribe(
       {next: (res) => {
-        window.location.href = '';
-        this.showSuccess();
+        localStorage.setItem('center', id);
+        localStorage.setItem('centerName', name);
+        window.location.href = 'appointments-free';
       },
       error: (e) => {this.showError('Fill out your personal file first.', 'Clinic application');
         console.log(e);}
@@ -37,9 +38,6 @@ export class CentersComponent implements OnInit {
     )
   }
 
-  showSuccess() {
-    this.toastr.success('success', 'Clinic application');
-  }
   showError(message: string, title: string) {
     this.toastr.error(message, title);
   }

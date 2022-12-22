@@ -31,7 +31,7 @@ export class UserLoginComponent implements OnInit {
             window.location.href = '/centers';
             this.showSuccess();
           },
-          error: (e) => {this.showError(e.error.Message, e.error.Title);
+          error: (e) => {this.showError('Login Failed', 'Clinic application');
             console.log(e);}
       });
     }
