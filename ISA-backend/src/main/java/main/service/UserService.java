@@ -19,6 +19,8 @@ import main.model.Center;
 import main.model.PersonalFile;
 import main.model.User;
 import main.model.UserRegistered;
+import main.model.UserAdminCenter;
+import main.repository.UserAdminCenterRepository;
 import main.repository.UserRepository;
 import net.bytebuddy.utility.RandomString;
 
@@ -27,6 +29,8 @@ public class UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private UserAdminCenterRepository userAdminCenterRepository;
 	
 	@Autowired
     private JavaMailSender mailSender;
@@ -152,6 +156,13 @@ public class UserService {
 	
     public User loggedInUser(Authentication authentication) {
         return findByEmail(authentication.getName());
+    }
+    
+    public Center GetCenterByAdminEmail(String email)
+    {
+    	User user = userRepository.findByEmail(email);
+    	UserAdminCenter admin = userAdminCenterRepository.findByUser(user);
+    	return admin.getCenters();
     }
 	
 }

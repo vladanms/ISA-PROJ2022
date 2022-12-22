@@ -8,7 +8,7 @@ import main.model.*;
 @Repository
 public interface UserAdminCenterRepository extends JpaRepository<UserAdminCenter, Long> {
 
-	//UserAdminCenter findByCenter(Center center);
+	UserAdminCenter findByCenter(Center center);
 	
-    //UserRegistered findByUser(User user);
+    UserAdminCenter findByUser(User user);
 }
