@@ -1,0 +1,88 @@
+<mat-card>
+    <mat-card-title>
+        <h1>Personal file</h1>
+    </mat-card-title>
+    <mat-card-content>
+        <form>
+           <div class = "row">
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Full name</mat-label>
+                        <input matInput placeholder="Enter full name" name="fullName" [(ngModel)]="fullName">
+                    </mat-form-field>
+                    <div></div>
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Personal ID</mat-label>
+                        <input matInput placeholder="Enter personal ID no." name="JMBG" [(ngModel)]="JMBG">
+                    </mat-form-field>
+                    <div></div>
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Address</mat-label>
+                        <input matInput placeholder="Enter your address" name="address" [(ngModel)]="address">
+                    </mat-form-field>
+                    <div></div>
+                      <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Phone</mat-label>
+                        <input matInput placeholder="Enter your phone no." name="phone" [(ngModel)]="phone">
+                    </mat-form-field>
+                    <div></div>
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Company</mat-label>
+                        <input matInput placeholder="Enter your company name" name="company" [(ngModel)]="company">
+                    </mat-form-field>
+                    <div></div>
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Occupation</mat-label>
+                        <input matInput placeholder="Enter your occupation" name="occupation" [(ngModel)]="occupation">
+                    </mat-form-field>
+                    <div></div>
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Previous donations</mat-label>
+                        <input matInput placeholder="Enter no. of previous donations" name="previousDonationsNo" [(ngModel)]="previousDonationsNo">
+                    </mat-form-field>
+                    <div></div>
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="Enter your name" name="name" [(ngModel)]="name">
+                    </mat-form-field>
+                    <div></div>
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Did you donate previously?</mat-label>
+                        <mat-checkbox checked ="false" enabled = "true" name="alreadyDonated" [(ngModel)]="alreadyDonated"></mat-checkbox>
+                    </mat-form-field>
+                    <div></div>
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Was your donation ever refused?</mat-label>
+                        <mat-checkbox checked ="false" name="donationRefused" [(ngModel)]="donationRefused"></mat-checkbox>
+                    </mat-form-field>
+                    <div></div>
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Do you have a dangerous occupation/hobby</mat-label>
+                        <mat-checkbox checked ="false" name="dangerousOccupation" [(ngModel)]="dangerousOccupation"></mat-checkbox>
+                    </mat-form-field>
+                    <div></div>
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Do you take any prescription meds?</mat-label>
+                        <mat-checkbox checked ="false" name="prescriptionMeds" [(ngModel)]="prescriptionMeds"></mat-checkbox>
+                    </mat-form-field>
+                    <div></div>
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Do you have any allergies?</mat-label>
+                        <mat-checkbox checked ="false" name="allergies" [(ngModel)]="allergies"></mat-checkbox>
+                    </mat-form-field>
+                    <div></div>
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Do you have any chronic conditions?</mat-label>
+                        <mat-checkbox checked ="false" name="chronicIllness" [(ngModel)]="chronicIllness"></mat-checkbox>
+                    </mat-form-field>
+                    <div></div>
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-checkbox checked ="false" name="termsAndConditions" [(ngModel)]="termsAndConditions">
+                            I AGREE TO TERMS AND CONDITIONS
+                        </mat-checkbox>
+                    </mat-form-field>
+                    <div></div>
+                    <button style="width: 50%;" mat-raised-button color="primary" (click)="submit()">Submit</button>
+           </div> 
+        </form>
+    </mat-card-content>
+</mat-card>

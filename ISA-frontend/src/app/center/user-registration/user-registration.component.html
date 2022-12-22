@@ -6,47 +6,56 @@
         <p></p>
         <form>
             <div class="row">
-                <div>
                     <mat-form-field class="full-width" appearance="fill">
                         <mat-label>Name</mat-label>
                         <input matInput placeholder="Enter your name" name="name" [(ngModel)]="name">
                     </mat-form-field>
+                    <div></div>
                     <mat-form-field class="full-width" appearance="fill">
                         <mat-label>Surname</mat-label>
                         <input matInput placeholder="Enter your surname" name="surname" [(ngModel)]="surname">
                     </mat-form-field>
+                    <div></div>
                     <mat-form-field class="full-width" appearance="fill">
                         <mat-label>Email</mat-label>
                         <input matInput placeholder="Enter your email" name="email" [(ngModel)]="email">
                     </mat-form-field>
+                    <div></div>
                     <mat-form-field class="full-width" appearance="fill">
                         <mat-label>Password</mat-label>
                         <input matInput placeholder="Enter your password" value="" name="password" type="password" [(ngModel)]="password">
                     </mat-form-field>
+                    <div></div>
                     <mat-form-field class="full-width" appearance="fill">
                         <mat-label>Confirm Password</mat-label>
                         <input matInput placeholder="Confirm your password" value="" name="confirmPassword" type="password" [(ngModel)]="confirmPassword">
                     </mat-form-field>
+                    <div></div>
                     <mat-form-field class="full-width" appearance="fill">
                         <mat-label>JMBG</mat-label>
                         <input matInput placeholder="Enter your jmbg" name="jmbg" [(ngModel)]="jmbg">
                     </mat-form-field>
+                    <div></div>
                     <mat-form-field class="full-width" appearance="fill">
                         <mat-label>Address</mat-label>
                         <input matInput placeholder="Enter your address" name="address" [(ngModel)]="address">
                     </mat-form-field>
+                    <div></div>
                     <mat-form-field class="full-width" appearance="fill">
                         <mat-label>City</mat-label>
                         <input matInput placeholder="Enter your city" name="name" [(ngModel)]="city">
                     </mat-form-field>
+                    <div></div>
                     <mat-form-field class="full-width" appearance="fill">
                         <mat-label>Country</mat-label>
                         <input matInput placeholder="Enter your country" name="name" [(ngModel)]="country">
                     </mat-form-field>
+                    <div></div>
                     <mat-form-field class="full-width" appearance="fill">
                         <mat-label>Phone</mat-label>
                         <input matInput placeholder="Enter your phone" name="phone" [(ngModel)]="phone">
                     </mat-form-field>
+                    <div></div>
                     <mat-form-field class="full-width" appearance="fill">
                         <mat-label>Gender</mat-label>
                         <select name="gender" [(ngModel)]="gender" matNativeControl>
@@ -54,16 +63,16 @@
                             <option [ngValue]="1">Female</option>
                         </select>
                     </mat-form-field>
+                    <div></div>
                     <mat-form-field class="full-width" appearance="fill">
                         <mat-label>Occupation</mat-label>
                         <input matInput placeholder="Enter your occupation" name="occupation" [(ngModel)]="occupation">
                     </mat-form-field><br>
+                    <div></div>
                     <mat-form-field class="full-width" appearance="fill">
                         <mat-label>Company</mat-label>
                         <input matInput placeholder="Enter your company" name="company" [(ngModel)]="company">
                     </mat-form-field>
-                </div>
-
             </div>
 
             <button style="width: 50%;" mat-raised-button color="primary" (click)="submit()">Submit</button>

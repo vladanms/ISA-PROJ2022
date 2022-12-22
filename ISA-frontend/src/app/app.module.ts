@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -61,6 +62,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MatTableModule,
     FormsModule,
     ReactiveFormsModule,
+    MatCheckboxModule,
 
     MatSlideToggleModule,
     MatDialogModule,
