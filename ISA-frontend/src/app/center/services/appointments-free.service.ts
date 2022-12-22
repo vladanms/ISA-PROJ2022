@@ -18,4 +18,12 @@ export class AppointmentsFreeService {
   getAppointments(center:any): Observable<appointmentDTO[]> {
     return this.http.get<appointmentDTO[]>(this.apiHost + 'appointment/getFreeAppointments?center=' + center, {headers: this.headers});
   }
+
+  scheduleFreeAppointment(appointmentId:string, email:string):Observable<any> {
+    let scheduleDTO = {
+      appointmentId: appointmentId,
+      email: email
+    }
+    return this.http.put<any>(this.apiHost + 'appointment/scheduleFreeAppointment', scheduleDTO, {headers: this.headers});
+  }
 }

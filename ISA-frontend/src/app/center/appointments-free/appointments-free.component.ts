@@ -28,7 +28,13 @@ export class AppointmentsFreeComponent implements OnInit {
   }
 
   public schedule(id:any){
-
+    this.appointmentsFreeService.scheduleFreeAppointment(id, localStorage.getItem('loggedUser')).subscribe({
+      next: (res) => {
+        this.router.navigate(['centers']);
+        this.toastr.success('Appointment Scheduled', 'Clinic application');
+        },
+        error: (e) => {this.toastr.error('Schedule error', 'Clinic application');
+          console.log(e);}
+    });
   }
-
 }
