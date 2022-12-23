@@ -24,6 +24,31 @@
             <button mat-flat-button color="primary" (click)="submit()">
                 Search
             </button>
+
+            <button mat-flat-button color="primary" (click)="reset()">
+                Search
+            </button>
+
+            <table mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef class="cell-center"> Name </th>
+                    <td mat-cell *matCellDef="let center" class="cell-center">{{center.name}}</td>
+                </ng-container>
+                <ng-container matColumnDef="address">
+                    <th mat-header-cell *matHeaderCellDef class="cell-center"> Address </th>
+                    <td mat-cell *matCellDef="let center" class="cell-center">{{center.address}}</td>
+                </ng-container>
+                <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef class="cell-center"> Description </th>
+                    <td mat-cell *matCellDef="let center" class="cell-center">{{center.description}}</td>
+                </ng-container>
+                <ng-container matColumnDef="grade">
+                    <th mat-header-cell *matHeaderCellDef class="cell-center"> Average Grade</th>
+                    <td mat-cell *matCellDef="let center" class="cell-center">{{center.avgGrade}}</td>
+                </ng-container>            
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
         </form>
     </mat-card-content>
 </mat-card>
