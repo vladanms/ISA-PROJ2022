@@ -8,6 +8,8 @@ import { CentersComponent } from './center/centers/centers.component';
 import { PersonalFileComponent } from './center/personal-file/personal-file.component';
 import { AppointmentsFreeComponent } from './center/appointments-free/appointments-free.component';
 import { AppointmentsScheduledComponent } from './center/appointments-scheduled/appointments-scheduled.component';
+import { AppointmentsCreateComponent } from './center/appointment-create/appointments-create.component';
+
 
 const routes: Routes = [
   { path: 'user-registration', component: UserRegistrationComponent },
@@ -17,7 +19,8 @@ const routes: Routes = [
   { path: 'centers', component: CentersComponent },
   { path: 'personal-file', component: PersonalFileComponent },
   { path: 'appointments-free', component:AppointmentsFreeComponent},
-  { path: 'appointments-scheduled', component: AppointmentsScheduledComponent}
+  { path: 'appointments-scheduled', component: AppointmentsScheduledComponent},
+  { path: 'appointments-create', component: AppointmentsCreateComponent}
 ];
 
 @NgModule({
