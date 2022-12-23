@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class AppointmentDTOView {
-	private int id;
+	private String id;
 	private String centerName;
 	private String date;
 	private String time;
@@ -13,7 +13,7 @@ public class AppointmentDTOView {
 		super();
 	}
 	
-	public AppointmentDTOView(int id, String centerName, String date, String time) {
+	public AppointmentDTOView(String id, String centerName, String date, String time) {
 		super();
 		this.id = id;
 		this.centerName = centerName;
@@ -24,14 +24,14 @@ public class AppointmentDTOView {
 	/**
 	 * @return the id
 	 */
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

@@ -22,7 +22,8 @@ export class AppointmentsScheduledService {
   cancelFreeAppointment(appointmentId:string, email:string):Observable<any> {
     let scheduleDTO = {
       appointmentId: appointmentId,
-      email: email
+      email: email,
+      centerId: ""
     }
     return this.http.put<any>(this.apiHost + 'appointment/cancelFreeAppointment', scheduleDTO, {headers: this.headers});
   }

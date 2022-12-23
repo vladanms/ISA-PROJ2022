@@ -28,6 +28,7 @@ import main.dto.FreeAppointmentScheduleDTO;
 import main.model.*;
 import main.service.AppointmentService;
 import main.service.CenterService;
+import main.service.RestrictedAppointmentService;
 import main.service.UserService;
 
 @RestController
@@ -42,6 +43,9 @@ public class AppointmentController {
     
     @Autowired
 	private UserService userService;
+    
+    @Autowired
+    private RestrictedAppointmentService restrictedAppointmentService;
 
     @PostMapping("/create")
     public ResponseEntity<Appointment> createAppointment(@RequestBody AppointmentDTO appointmentDTO)
@@ -96,15 +100,16 @@ public class AppointmentController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
     
-    @GetMapping("/getFreeAppointments")
-    public @ResponseBody ArrayList<AppointmentDTOView> getFreeAppointments(@Param("center") String center){ 
+    @PutMapping("/getFreeAppointments")
+    public @ResponseBody ArrayList<AppointmentDTOView> getFreeAppointments(@RequestBody FreeAppointmentScheduleDTO fasDTO){ 
 		ArrayList<Appointment> appointments = appointmentService.getAll();
+		ArrayList<RestrictedAppointment> restricted = restrictedAppointmentService.getAll();
 		ArrayList<AppointmentDTOView> appointmentDTOs = new ArrayList<AppointmentDTOView>();
 
 		for(Appointment a : appointments){
-			if(a.getCenter().getId().equals(Long.parseLong(center)) && a.getUser() == null) {
+			if(a.getCenter().getId().equals(Long.parseLong(fasDTO.getCenterId())) && a.getUser() == null) {
 				AppointmentDTOView app = new AppointmentDTOView();
-				app.setId(a.getId().intValue());
+				app.setId(a.getId().toString());
 				app.setCenterName(a.getCenter().getName());
 				app.setDate(a.getDate().toString());
 				app.setTime(a.getTime().toString());
@@ -112,7 +117,22 @@ public class AppointmentController {
 			}
 		}
 		
-		return appointmentDTOs;
+		if(restricted.isEmpty()) {
+			return appointmentDTOs;
+		}
+		
+		ArrayList<AppointmentDTOView> appointmentDTOs2 = new ArrayList<AppointmentDTOView>();
+		for(AppointmentDTOView a : appointmentDTOs) {
+			for(RestrictedAppointment ra : restricted) {
+				if((ra.getAppointmentId().equals(a.getId())) && (ra.getEmail().equals(fasDTO.getEmail()))) {
+					break;
+				} else {
+					appointmentDTOs2.add(a);
+				}
+			}
+		}
+		
+		return appointmentDTOs2;
 	}
     
     @PutMapping("/scheduleFreeAppointment")
@@ -136,6 +156,10 @@ public class AppointmentController {
     	}
     	a.get().setUser(null);
     	appointmentService.scheduleFreeAppointment(a.get());
+    	RestrictedAppointment ra = new RestrictedAppointment();
+    	ra.setAppointmentId(fasDTO.getAppointmentId());
+    	ra.setEmail(fasDTO.getEmail());
+    	restrictedAppointmentService.add(ra);
     	return new ResponseEntity<>(HttpStatus.OK);
     }
     
@@ -153,7 +177,7 @@ public class AppointmentController {
 			if(a.getUser() != null) {
 				if(a.getUser().getEmail().equals(user)) {
 					AppointmentDTOView app = new AppointmentDTOView();
-					app.setId(a.getId().intValue());
+					app.setId(a.getId().toString());
 					app.setCenterName(a.getCenter().getName());
 					app.setDate(a.getDate().toString());
 					app.setTime(a.getTime().toString());

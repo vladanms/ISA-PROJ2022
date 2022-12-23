@@ -21,7 +21,7 @@ export class AppointmentsFreeComponent implements OnInit {
 
   ngOnInit(): void {
     this.centerName = localStorage.getItem('centerName');
-    this.appointmentsFreeService.getAppointments(localStorage.getItem('center')).subscribe(res => {
+    this.appointmentsFreeService.getAppointments(localStorage.getItem('loggedUser'), localStorage.getItem('center')).subscribe(res => {
       this.appointments = res;
       this.dataSource.data = this.appointments;
     })

@@ -3,7 +3,16 @@ package main.dto;
 public class FreeAppointmentScheduleDTO {
 	private String appointmentId;
 	private String email;
+	private String centerId;
 	
+	public String getCenterId() {
+		return centerId;
+	}
+
+	public void setCenterId(String centerId) {
+		this.centerId = centerId;
+	}
+
 	public FreeAppointmentScheduleDTO() {
 		super();
 	}
