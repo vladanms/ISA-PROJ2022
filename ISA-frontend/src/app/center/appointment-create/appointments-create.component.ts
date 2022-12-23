@@ -13,7 +13,7 @@ import { AppointmentsCreateService } from '../services/appointments-create.servi
     styleUrls: ['./appointments-create.component.css']
   })
 
-  export class AppointmentsCreate implements OnInit{
+  export class AppointmentsCreateComponent implements OnInit{
     date : Date = null;
     time : Time = null;
     

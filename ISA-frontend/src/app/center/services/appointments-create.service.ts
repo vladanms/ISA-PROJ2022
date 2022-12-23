@@ -15,12 +15,15 @@ export class AppointmentsCreateService {
 
     createNewAppointment(date: Date, time: Time): Observable<any>{
         let appointment = {
-            center : localStorage.getItem('center'),
+            //center : localStorage.getItem('center'),
+            center : null,
             date : date,
             time : time,
             user : null
 
         };
+
+        
         return this.http.put<any>(this.apiHost + 'appointment/create', appointment, {headers: this.headers});
     }
 }

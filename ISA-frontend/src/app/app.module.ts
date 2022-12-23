@@ -24,7 +24,6 @@ import { CenterSearchComponent } from './center/center-search/center-search.comp
 import { UserLoginComponent } from './center/user-login/user-login.component';
 import { CentersComponent } from './center/centers/centers.component';
 
-
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -39,6 +38,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { PersonalFileComponent } from './center/personal-file/personal-file.component';
 import { AppointmentsFreeComponent } from './center/appointments-free/appointments-free.component';
 import { AppointmentsScheduledComponent } from './center/appointments-scheduled/appointments-scheduled.component';
+import { AppointmentsCreateComponent } from './center/appointment-create/appointments-create.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,8 @@ import { AppointmentsScheduledComponent } from './center/appointments-scheduled/
     CentersComponent,
     PersonalFileComponent,
     AppointmentsFreeComponent,
-    AppointmentsScheduledComponent
+    AppointmentsScheduledComponent,
+    AppointmentsCreateComponent
   ],
   imports: [
     CommonModule,
