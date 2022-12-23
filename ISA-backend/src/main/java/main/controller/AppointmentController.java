@@ -2,16 +2,24 @@ package main.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Optional;
 
 import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
+import com.google.zxing.WriterException;
+import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +38,7 @@ import main.service.AppointmentService;
 import main.service.CenterService;
 import main.service.RestrictedAppointmentService;
 import main.service.UserService;
+import main.support.QRCodeGenerator;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -37,6 +46,34 @@ import main.service.UserService;
 public class AppointmentController {
 
     User loggedInUser = new User();
+    private static final String QR_CODE_IMAGE_PATH = "./src/main/resources/QRCode.png";
+    
+    @GetMapping("/qr")
+    public String getQRCode(Model model){
+        String medium="https://rahul26021999.medium.com/";
+        String github="https://github.com/rahul26021999";
+
+        byte[] image = new byte[0];
+        try {
+
+            // Generate and Return Qr Code in Byte Array
+            image = QRCodeGenerator.getQRCodeImage(medium,250,250);
+
+            // Generate and Save Qr Code Image in static/image folder
+            QRCodeGenerator.generateQRCodeImage(github,250,250,QR_CODE_IMAGE_PATH);
+
+        } catch (WriterException | IOException e) {
+            e.printStackTrace();
+        }
+        // Convert Byte Array into Base64 Encode String
+        String qrcode = Base64.getEncoder().encodeToString(image);
+
+        model.addAttribute("medium",medium);
+        model.addAttribute("github",github);
+        model.addAttribute("qrcode",qrcode);
+
+        return "qrcode";
+    }
     
     @Autowired
 	private AppointmentService appointmentService;
@@ -46,6 +83,9 @@ public class AppointmentController {
     
     @Autowired
     private RestrictedAppointmentService restrictedAppointmentService;
+    
+    @Autowired
+    private JavaMailSender mailSender;
 
     @PostMapping("/create")
     public ResponseEntity<Appointment> createAppointment(@RequestBody AppointmentDTO appointmentDTO)
@@ -136,7 +176,7 @@ public class AppointmentController {
 	}
     
     @PutMapping("/scheduleFreeAppointment")
-    public ResponseEntity<Appointment> scheduleFreeAppointment(@RequestBody FreeAppointmentScheduleDTO fasDTO)
+    public ResponseEntity<Appointment> scheduleFreeAppointment(@RequestBody FreeAppointmentScheduleDTO fasDTO) throws MessagingException, UnsupportedEncodingException 
     {
     	Optional<Appointment> a = appointmentService.getById(Long.parseLong(fasDTO.getAppointmentId()));
     	if(a.get() == null) {
@@ -144,6 +184,33 @@ public class AppointmentController {
     	}
     	a.get().setUser(userService.findByEmail(fasDTO.getEmail()));
     	appointmentService.scheduleFreeAppointment(a.get());
+    	
+    	String toAddress = fasDTO.getEmail();
+	    String fromAddress = "ISA-Email";
+	    String senderName = "FTN";
+	    String subject = "Free appointment scheduled";
+	    String content = "Appointment,<br>"
+	    		+ "Center: [[CENTER]]<br>"
+	            + "Date: [[DATE]]<br>"
+	            + "Time: [[TIME]]<br>"
+	            + "<img src=\"[[LINK]]\" width=\"200\" height=\"200\">";
+	     
+	    MimeMessage message = mailSender.createMimeMessage();
+	    MimeMessageHelper helper = new MimeMessageHelper(message);
+	     
+	    helper.setFrom(fromAddress, senderName);
+	    helper.setTo(toAddress);
+	    helper.setSubject(subject);
+	    
+	    content = content.replace("[[CENTER]]", a.get().getCenter().getName());
+	    content = content.replace("[[DATE]]", a.get().getDate().toString());
+	    content = content.replace("[[TIME]]", a.get().getTime().toString());
+	    content = content.replace("[[LINK]]", "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png");
+	     
+	    helper.setText(content, true);
+	     
+	    mailSender.send(message);
+    	
     	return new ResponseEntity<>(HttpStatus.OK);
     }
     
