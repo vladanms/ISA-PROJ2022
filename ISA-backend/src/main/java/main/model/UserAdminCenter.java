@@ -2,11 +2,15 @@ package main.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class UserAdminCenter extends User {
@@ -16,8 +20,8 @@ public class UserAdminCenter extends User {
 	//@Column(name = "userId", unique = true, nullable = false)
 	//private Long id;
 
-	@Column(name = "assignedCenters", nullable = false)
-	private Center centers;
+	@OneToOne(targetEntity = Center.class, fetch = FetchType.EAGER)
+	private Center center;
 
 	public UserAdminCenter() {
 		super();
@@ -28,15 +32,15 @@ public class UserAdminCenter extends User {
 			String city, String country, String phone, Gender gender, UserType type, String occupation,
 			String company, Center center) {
 		super(name, surname, email, jmbg, password, address, city, country, phone, gender, type, occupation, company);
-		this.centers = center;
+		this.center = center;
 	}
 
 	public Center getCenters() {
-		return centers;
+		return center;
 	}
 
-	public void setCenters(Center centers) {
-		this.centers = centers;
+	public void setCenters(Center center) {
+		this.center = center;
 	}
 
 	

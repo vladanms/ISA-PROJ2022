@@ -1,6 +1,8 @@
 package main.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
@@ -72,6 +74,44 @@ public class CenterController {
 			centerDTOs.add(cen);
 		}
 		
+		return centerDTOs;
+	}
+	
+	@GetMapping("/getAllDTOByName")
+    public @ResponseBody ArrayList<CenterDTOView> getAllDTOByName(){ 
+		ArrayList<Center> centers = centerService.findAll();
+		ArrayList<CenterDTOView> centerDTOs = new ArrayList<CenterDTOView>();
+		
+		for(Center c : centers){
+			CenterDTOView cen = new CenterDTOView();
+			cen.setId(c.getId().intValue());
+			cen.setName(c.getName());
+			cen.setAddress(c.getAddress());
+			cen.setDescription(c.getDescription());
+			cen.setAvgGrade(c.getAvgGrade());
+			centerDTOs.add(cen);
+		}
+		
+		Collections.sort(centerDTOs, Comparator.comparing(CenterDTOView::getName));
+		return centerDTOs;
+	}
+	
+	@GetMapping("/getAllDTOByGrade")
+    public @ResponseBody ArrayList<CenterDTOView> getAllDTOByGrade(){ 
+		ArrayList<Center> centers = centerService.findAll();
+		ArrayList<CenterDTOView> centerDTOs = new ArrayList<CenterDTOView>();
+		
+		for(Center c : centers){
+			CenterDTOView cen = new CenterDTOView();
+			cen.setId(c.getId().intValue());
+			cen.setName(c.getName());
+			cen.setAddress(c.getAddress());
+			cen.setDescription(c.getDescription());
+			cen.setAvgGrade(c.getAvgGrade());
+			centerDTOs.add(cen);
+		}
+		
+		Collections.sort(centerDTOs, Comparator.comparing(CenterDTOView::getAvgGrade));
 		return centerDTOs;
 	}
 	

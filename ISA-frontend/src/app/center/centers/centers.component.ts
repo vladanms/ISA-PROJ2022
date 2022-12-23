@@ -25,6 +25,20 @@ export class CentersComponent implements OnInit {
     })
   }
 
+  public sortByName(){
+    this.centersService.getCentersByName().subscribe(res => {
+      this.centers = res;
+      this.dataSource.data = this.centers;
+    })
+  }
+
+  public sortByGrade(){
+    this.centersService.getCentersByGrade().subscribe(res => {
+      this.centers = res;
+      this.dataSource.data = this.centers;
+    })
+  }
+
   public schedule(id: any, name:any){
     this.centersService.checkPersonalFile(localStorage.getItem('loggedUser')).subscribe(
       {next: (res) => {

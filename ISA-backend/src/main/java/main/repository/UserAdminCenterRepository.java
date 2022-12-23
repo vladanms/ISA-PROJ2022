@@ -10,5 +10,5 @@ public interface UserAdminCenterRepository extends JpaRepository<UserAdminCenter
 
 	UserAdminCenter findByCenter(Center center);
 	
-    UserAdminCenter findByUser(User user);
+    UserAdminCenter findByEmail(String email);
 }

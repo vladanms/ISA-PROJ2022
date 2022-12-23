@@ -19,6 +19,14 @@ export class CentersService {
     return this.http.get<centerDTO[]>(this.apiHost + 'center/getAllDTO', {headers: this.headers});
   }
 
+  getCentersByName(): Observable<centerDTO[]> {
+    return this.http.get<centerDTO[]>(this.apiHost + 'center/getAllDTOByName', {headers: this.headers});
+  }
+
+  getCentersByGrade(): Observable<centerDTO[]> {
+    return this.http.get<centerDTO[]>(this.apiHost + 'center/getAllDTOByGrade', {headers: this.headers});
+  }
+
   checkPersonalFile(email:string): Observable<any>{
     return this.http.post<any>(this.apiHost + 'user/checkPersonalFile', email, {headers: this.headers});
   }

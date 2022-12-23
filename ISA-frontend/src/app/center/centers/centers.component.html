@@ -3,6 +3,8 @@
         <h2>Centers</h2>
     </mat-card-title>
     <mat-card-content>
+        <button mat-flat-button (click)="sortByName()">Sort by name</button>
+        <button mat-flat-button (click)="sortByGrade()">Sort by grade</button>
         <table mat-table [dataSource]="dataSource">
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef class="cell-center"> Name </th>

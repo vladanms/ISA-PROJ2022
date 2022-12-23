@@ -160,8 +160,7 @@ public class UserService {
     
     public Center GetCenterByAdminEmail(String email)
     {
-    	User user = userRepository.findByEmail(email);
-    	UserAdminCenter admin = userAdminCenterRepository.findByUser(user);
+    	UserAdminCenter admin = userAdminCenterRepository.findByEmail(email);
     	return admin.getCenters();
     }
 	
