@@ -148,4 +148,10 @@ public class UserController {
 	
 	@GetMapping("/getAll")
     public @ResponseBody ArrayList<User> getAll(){ return userService.findAll(); }
+	
+	@GetMapping("/getUser")
+    public @ResponseBody User getUser(@Param("user") String user)
+	{
+		return userService.findByEmail(user);
+	}
 }

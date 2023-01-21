@@ -6,7 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  public gender: Number = 0;
+  name: string = "";
+  surname: string = "";
+  address: string = "";
+  city: string = "";
+  country: string = "";
+  phone: string = "";
+  gender: Number = 0;
+  occupation: string = "";
+  
   constructor() { }
 
   ngOnInit(): void {

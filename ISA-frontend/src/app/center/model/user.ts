@@ -9,7 +9,7 @@ export class User{
 	city: string;
 	country: string;
 	phone: string;
-	gender: string;
+	gender: number;
 	usertype: string;
 	occupation: string;
 	company: string;
