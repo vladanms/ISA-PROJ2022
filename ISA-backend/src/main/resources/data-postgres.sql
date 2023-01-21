@@ -6,5 +6,5 @@ INSERT INTO public.center (center_id, center_name, center_address, center_descri
 INSERT INTO public.center (center_id, center_name, center_address, center_description, center_avg_grade) VALUES (default, 'Center Four', 'Street Number 4', 'description4', 10);
 INSERT INTO public.center (center_id, center_name, center_address, center_description, center_avg_grade) VALUES (default, 'Center Five', 'Street Number 5', 'description5', 5);
 
-INSERT INTO public.appointment(id, date, time, center_center_id, user_user_id) VALUES (default, '2023-1-1', '10:00', 1, null);
-INSERT INTO public.appointment(id, date, time, center_center_id, user_user_id) VALUES (default, '2023-1-1', '11:00', 1, null);
+INSERT INTO public.appointment(id, date, time, center_center_id, user_user_id) VALUES (default, '2023-2-2', '10:00', 1, null);
+INSERT INTO public.appointment(id, date, time, center_center_id, user_user_id) VALUES (default, '2023-2-2', '11:00', 1, null);

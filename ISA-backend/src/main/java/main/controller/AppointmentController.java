@@ -8,7 +8,12 @@ import java.util.Optional;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,33 +51,16 @@ import main.support.QRCodeGenerator;
 public class AppointmentController {
 
     User loggedInUser = new User();
-    private static final String QR_CODE_IMAGE_PATH = "./src/main/resources/QRCode.png";
+    private static final String QR_CODE_IMAGE_PATH = "./src/main/resources/QRCode";
     
-    @GetMapping("/qr")
-    public String getQRCode(Model model){
-        String medium="https://rahul26021999.medium.com/";
-        String github="https://github.com/rahul26021999";
-
-        byte[] image = new byte[0];
-        try {
-
-            // Generate and Return Qr Code in Byte Array
-            image = QRCodeGenerator.getQRCodeImage(medium,250,250);
-
-            // Generate and Save Qr Code Image in static/image folder
-            QRCodeGenerator.generateQRCodeImage(github,250,250,QR_CODE_IMAGE_PATH);
-
-        } catch (WriterException | IOException e) {
-            e.printStackTrace();
-        }
-        // Convert Byte Array into Base64 Encode String
-        String qrcode = Base64.getEncoder().encodeToString(image);
-
-        model.addAttribute("medium",medium);
-        model.addAttribute("github",github);
-        model.addAttribute("qrcode",qrcode);
-
-        return "qrcode";
+    public boolean generateQRCodeImage(Long idAppointment) throws Exception {
+    	Optional<Appointment> a = appointmentService.getById(idAppointment);
+    	String content = "Appointment,\n"
+	    		+ "Center: " + a.get().getCenter().getName() + "\n"
+	            + "Date: " + a.get().getDate().toString() + "\n"
+	            + "Time: " + a.get().getTime().toString();
+        QRCodeGenerator.generateQRCodeImage(content,250,250,QR_CODE_IMAGE_PATH + idAppointment + ".png");
+        return true;
     }
     
     @Autowired
@@ -176,8 +164,9 @@ public class AppointmentController {
 	}
     
     @PutMapping("/scheduleFreeAppointment")
-    public ResponseEntity<Appointment> scheduleFreeAppointment(@RequestBody FreeAppointmentScheduleDTO fasDTO) throws MessagingException, UnsupportedEncodingException 
+    public ResponseEntity<Appointment> scheduleFreeAppointment(@RequestBody FreeAppointmentScheduleDTO fasDTO) throws Exception 
     {
+    	generateQRCodeImage(Long.parseLong(fasDTO.getAppointmentId()));
     	Optional<Appointment> a = appointmentService.getById(Long.parseLong(fasDTO.getAppointmentId()));
     	if(a.get() == null) {
     		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -205,7 +194,7 @@ public class AppointmentController {
 	    content = content.replace("[[CENTER]]", a.get().getCenter().getName());
 	    content = content.replace("[[DATE]]", a.get().getDate().toString());
 	    content = content.replace("[[TIME]]", a.get().getTime().toString());
-	    content = content.replace("[[LINK]]", "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png");
+	    content = content.replace("[[LINK]]", QR_CODE_IMAGE_PATH + Long.parseLong(fasDTO.getAppointmentId()) + ".png");
 	     
 	    helper.setText(content, true);
 	     
