@@ -39,6 +39,8 @@ import { PersonalFileComponent } from './center/personal-file/personal-file.comp
 import { AppointmentsFreeComponent } from './center/appointments-free/appointments-free.component';
 import { AppointmentsScheduledComponent } from './center/appointments-scheduled/appointments-scheduled.component';
 import { AppointmentsCreateComponent } from './center/appointment-create/appointments-create.component';
+import { AppointmentsAttendedComponent } from './center/appointments-attended/appointments-attended.component';
+import { PenalsComponent } from './center/penals/penals.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { AppointmentsCreateComponent } from './center/appointment-create/appoint
     PersonalFileComponent,
     AppointmentsFreeComponent,
     AppointmentsScheduledComponent,
-    AppointmentsCreateComponent
+    AppointmentsCreateComponent,
+    AppointmentsAttendedComponent,
+    PenalsComponent
   ],
   imports: [
     CommonModule,

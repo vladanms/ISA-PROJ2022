@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { appointmentDTO } from '../dto/appointmentDTO';
+import { attendedAppointmentDTO } from '../dto/attendedAppointmentDTOView';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,19 @@ export class AppointmentsScheduledService {
 
   getAppointments(user:any): Observable<appointmentDTO[]> {
     return this.http.get<appointmentDTO[]>(this.apiHost + 'appointment/getScheduledAppointments?user=' + user, {headers: this.headers});
+  }
+
+  getAttendedAppointments(user:any): Observable<attendedAppointmentDTO[]> {
+    return this.http.get<attendedAppointmentDTO[]>(this.apiHost + 'appointment/getAttendedAppointments?user=' + user, {headers: this.headers});
+  }
+  getAttendedAppointmentsByCenter(user:any): Observable<attendedAppointmentDTO[]> {
+    return this.http.get<attendedAppointmentDTO[]>(this.apiHost + 'appointment/getAttendedAppointmentsByCenter?user=' + user, {headers: this.headers});
+  }
+  getAttendedAppointmentsByPrice(user:any): Observable<attendedAppointmentDTO[]> {
+    return this.http.get<attendedAppointmentDTO[]>(this.apiHost + 'appointment/getAttendedAppointmentsByPrice?user=' + user, {headers: this.headers});
+  }
+  getAttendedAppointmentsByLength(user:any): Observable<attendedAppointmentDTO[]> {
+    return this.http.get<attendedAppointmentDTO[]>(this.apiHost + 'appointment/getAttendedAppointmentsByLength?user=' + user, {headers: this.headers});
   }
 
   cancelFreeAppointment(appointmentId:string, email:string):Observable<any> {

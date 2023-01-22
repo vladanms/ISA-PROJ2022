@@ -8,3 +8,8 @@ INSERT INTO public.center (center_id, center_name, center_address, center_descri
 
 INSERT INTO public.appointment(id, date, time, center_center_id, user_user_id) VALUES (default, '2023-2-2', '10:00', 1, null);
 INSERT INTO public.appointment(id, date, time, center_center_id, user_user_id) VALUES (default, '2023-2-2', '11:00', 1, null);
+
+INSERT INTO public.attended_appointment(id, date, time, center_center_id, user_user_id, price, length) VALUES (default, '2022-10-10', '11:00', 2, 1, 300, 5);
+INSERT INTO public.attended_appointment(id, date, time, center_center_id, user_user_id, price, length) VALUES (default, '2022-10-22', '17:00', 3, 1, 500, 10);
+
+INSERT INTO public.penal(id, date, email) VALUES (default, '2022-11-2', 'pera@gmail.com');

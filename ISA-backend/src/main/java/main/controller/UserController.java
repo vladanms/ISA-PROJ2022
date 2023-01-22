@@ -20,12 +20,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import main.dto.PenalDTOView;
 import main.dto.UserDTO;
+import main.model.Penal;
 import main.model.PersonalFile;
 import main.model.User;
 import main.model.UserRegistered;
 import main.model.UserType;
 import main.model.UserCategory;
+import main.service.PenalService;
 import main.service.UserService;
 
 @RestController
@@ -36,6 +39,9 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	User loggedInUser = new User();
+	
+	@Autowired
+	private PenalService penalService;
 	
 	/*
 	@PostMapping("/login")
@@ -153,5 +159,21 @@ public class UserController {
     public @ResponseBody User getUser(@Param("user") String user)
 	{
 		return userService.findByEmail(user);
+	}
+	
+	@GetMapping("/getPenals")
+    public @ResponseBody ArrayList<PenalDTOView> gePenals(@Param("user") String user)
+	{
+		ArrayList<Penal> penals = penalService.getAll();
+		ArrayList<PenalDTOView> penalsToReturn = new ArrayList<PenalDTOView>();
+		for(Penal p : penals) {
+			if(p.getEmail().equals(user)) {
+				PenalDTOView pen = new PenalDTOView();
+				pen.setDate(p.getDate().toString());
+				pen.setEmail(pen.getEmail());
+				penalsToReturn.add(pen);
+			}
+		}
+		return penalsToReturn;
 	}
 }

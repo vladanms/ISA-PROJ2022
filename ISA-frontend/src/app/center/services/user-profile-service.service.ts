@@ -12,7 +12,7 @@ export class UserProfileServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getUser(id: any): Observable<User>{
-    return this.http.get<User>(this.apiHost + 'user/getUser/' + localStorage.getItem('loggedUser'),  {headers: this.headers});
+  getUser(): Observable<User>{
+    return this.http.get<User>(this.apiHost + 'user/getUser?user=' + localStorage.getItem('loggedUser'),  {headers: this.headers});
   }
 }

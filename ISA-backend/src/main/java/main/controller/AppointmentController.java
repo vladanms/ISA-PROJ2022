@@ -1,8 +1,11 @@
 package main.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Optional;
 
 import javax.mail.MessagingException;
@@ -36,10 +39,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import main.dto.AppointmentDTO;
 import main.dto.AppointmentDTOView;
+import main.dto.AttendedAppointmentDTOView;
 import main.dto.CenterDTOView;
 import main.dto.FreeAppointmentScheduleDTO;
 import main.model.*;
 import main.service.AppointmentService;
+import main.service.AttendedAppointmentService;
 import main.service.CenterService;
 import main.service.RestrictedAppointmentService;
 import main.service.UserService;
@@ -65,6 +70,9 @@ public class AppointmentController {
     
     @Autowired
 	private AppointmentService appointmentService;
+    
+    @Autowired
+	private AttendedAppointmentService attendedAppointmentService;
     
     @Autowired
 	private UserService userService;
@@ -242,6 +250,88 @@ public class AppointmentController {
 			}
 		}
 		
+		return appointmentDTOs;
+	}
+    
+    @GetMapping("/getAttendedAppointments")
+    public @ResponseBody ArrayList<AttendedAppointmentDTOView> getAttendedAppointments(@Param("user") String user){ 
+		ArrayList<AttendedAppointment> appointments = attendedAppointmentService.getAll();
+		ArrayList<AttendedAppointmentDTOView> appointmentDTOs = new ArrayList<AttendedAppointmentDTOView>();
+		
+		for(AttendedAppointment a : appointments){
+			if(a.getUser().getEmail().equals(user) && a.getDate().isBefore(LocalDate.now())) {
+				AttendedAppointmentDTOView app = new AttendedAppointmentDTOView();
+				app.setId(a.getId().toString());
+				app.setCenterName(a.getCenter().getName());
+				app.setDate(a.getDate().toString());
+				app.setTime(a.getTime().toString());
+				app.setPrice(a.getPrice());
+				app.setLength(a.getLength());
+				appointmentDTOs.add(app);
+			}
+		}
+		
+		return appointmentDTOs;
+	}
+    
+    @GetMapping("/getAttendedAppointmentsByCenter")
+    public @ResponseBody ArrayList<AttendedAppointmentDTOView> getAttendedAppointmentsByCenter(@Param("user") String user){ 
+		ArrayList<AttendedAppointment> appointments = attendedAppointmentService.getAll();
+		ArrayList<AttendedAppointmentDTOView> appointmentDTOs = new ArrayList<AttendedAppointmentDTOView>();
+		
+		for(AttendedAppointment a : appointments){
+			if(a.getUser().getEmail().equals(user) && a.getDate().isBefore(LocalDate.now())) {
+				AttendedAppointmentDTOView app = new AttendedAppointmentDTOView();
+				app.setId(a.getId().toString());
+				app.setCenterName(a.getCenter().getName());
+				app.setDate(a.getDate().toString());
+				app.setTime(a.getTime().toString());
+				app.setPrice(a.getPrice());
+				app.setLength(a.getLength());
+				appointmentDTOs.add(app);
+			}
+		}
+		Collections.sort(appointmentDTOs, Comparator.comparing(AttendedAppointmentDTOView::getCenterName));
+		return appointmentDTOs;
+	}
+    @GetMapping("/getAttendedAppointmentsByPrice")
+    public @ResponseBody ArrayList<AttendedAppointmentDTOView> getAttendedAppointmentsByPrice(@Param("user") String user){ 
+		ArrayList<AttendedAppointment> appointments = attendedAppointmentService.getAll();
+		ArrayList<AttendedAppointmentDTOView> appointmentDTOs = new ArrayList<AttendedAppointmentDTOView>();
+		
+		for(AttendedAppointment a : appointments){
+			if(a.getUser().getEmail().equals(user) && a.getDate().isBefore(LocalDate.now())) {
+				AttendedAppointmentDTOView app = new AttendedAppointmentDTOView();
+				app.setId(a.getId().toString());
+				app.setCenterName(a.getCenter().getName());
+				app.setDate(a.getDate().toString());
+				app.setTime(a.getTime().toString());
+				app.setPrice(a.getPrice());
+				app.setLength(a.getLength());
+				appointmentDTOs.add(app);
+			}
+		}
+		Collections.sort(appointmentDTOs, Comparator.comparing(AttendedAppointmentDTOView::getPrice));
+		return appointmentDTOs;
+	}
+    @GetMapping("/getAttendedAppointmentsByLength")
+    public @ResponseBody ArrayList<AttendedAppointmentDTOView> getAttendedAppointmentsByLength(@Param("user") String user){ 
+		ArrayList<AttendedAppointment> appointments = attendedAppointmentService.getAll();
+		ArrayList<AttendedAppointmentDTOView> appointmentDTOs = new ArrayList<AttendedAppointmentDTOView>();
+		
+		for(AttendedAppointment a : appointments){
+			if(a.getUser().getEmail().equals(user) && a.getDate().isBefore(LocalDate.now())) {
+				AttendedAppointmentDTOView app = new AttendedAppointmentDTOView();
+				app.setId(a.getId().toString());
+				app.setCenterName(a.getCenter().getName());
+				app.setDate(a.getDate().toString());
+				app.setTime(a.getTime().toString());
+				app.setPrice(a.getPrice());
+				app.setLength(a.getLength());
+				appointmentDTOs.add(app);
+			}
+		}
+		Collections.sort(appointmentDTOs, Comparator.comparing(AttendedAppointmentDTOView::getLength));
 		return appointmentDTOs;
 	}
 

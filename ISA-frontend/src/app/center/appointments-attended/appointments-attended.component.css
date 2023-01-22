@@ -1,0 +1,50 @@
+.container {
+    width: 70%;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 3px;
+    border: #DCD6CC 1px solid;
+    background-color: white;
+}
+
+.content {
+    margin-left: auto;
+    margin-right: auto; 
+    width: 100%; 
+  }
+  mat-card {
+    max-width: 900px; 
+    text-align: center;
+    text-size-adjust: auto;
+    margin-top: 2%;
+    animation: fadein 0.5s;
+    -o-animation: fadein 1s; /* Opera */
+    -moz-animation: fadein 1s; /* Firefox */
+    -webkit-animation: fadein 1s; /* Safari and Chrome */
+  
+  }
+  
+
+table {
+    width: 100%;
+}
+
+.table-title {
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 20px;
+    font-size: 17px;
+}
+
+.cell-center {
+    text-align: right;
+}
+
+.table-header {
+    display:flex;
+}
+
+p {
+    float: left;
+    margin-right: auto;
+}

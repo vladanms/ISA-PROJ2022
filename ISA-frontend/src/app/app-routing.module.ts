@@ -9,7 +9,8 @@ import { PersonalFileComponent } from './center/personal-file/personal-file.comp
 import { AppointmentsFreeComponent } from './center/appointments-free/appointments-free.component';
 import { AppointmentsScheduledComponent } from './center/appointments-scheduled/appointments-scheduled.component';
 import { AppointmentsCreateComponent } from './center/appointment-create/appointments-create.component';
-
+import { AppointmentsAttendedComponent } from './center/appointments-attended/appointments-attended.component';
+import { PenalsComponent } from './center/penals/penals.component';
 
 const routes: Routes = [
   { path: 'user-registration', component: UserRegistrationComponent },
@@ -20,7 +21,9 @@ const routes: Routes = [
   { path: 'personal-file', component: PersonalFileComponent },
   { path: 'appointments-free', component:AppointmentsFreeComponent},
   { path: 'appointments-scheduled', component: AppointmentsScheduledComponent},
-  { path: 'appointments-create', component: AppointmentsCreateComponent}
+  { path: 'appointments-create', component: AppointmentsCreateComponent},
+  { path: 'appointments-attended', component: AppointmentsAttendedComponent},
+  { path: 'penals', component:PenalsComponent }
 ];
 
 @NgModule({
