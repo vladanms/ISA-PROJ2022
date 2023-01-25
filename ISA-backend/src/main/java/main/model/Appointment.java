@@ -4,6 +4,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Version;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,7 +34,18 @@ public class Appointment {
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     private User user;
     
-    public Appointment() {
+    @Version
+	private Integer version;
+    
+    public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
+	public Appointment() {
 		super();
 	}
 

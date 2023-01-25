@@ -42,6 +42,14 @@ public class Center {
 		super();
 	}
 
+	public Center(String name, String address, String description, Float avgGrade) {
+		super();
+		this.name = name;
+		this.address = address;
+		this.description = description;
+		this.avgGrade = avgGrade;
+	}
+
 	public Center(Long id, String name, String address, String description, ArrayList<Appointment> appointments, Float avgGrade) {
 		super();
 		this.id = id;

@@ -8,8 +8,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import main.dto.AppointmentDTO;
 import main.model.*;
@@ -18,6 +21,8 @@ import main.repository.AppointmentRepository;
 @Service
 public class AppointmentService {
     
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private AppointmentRepository appointmentRepository;
 	
@@ -31,10 +36,13 @@ public class AppointmentService {
         return true;
 	}
 
-	public boolean scheduleFreeAppointment(Appointment appointment)
+	@Transactional(readOnly = false)
+	public Appointment scheduleFreeAppointment(Appointment appointment)
     {
-		appointmentRepository.save(appointment);
-		return true;
+		logger.info("> schedule");
+		Appointment savedAppoinment = appointmentRepository.save(appointment);
+		logger.info("< schedule");
+		return savedAppoinment;
     }
 
     public int schedule(Appointment appointment, User user)
