@@ -12,6 +12,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CentersComponent implements OnInit {
 
+  name: string = "";
+  address: string = "";
+  grade: number = "";
+
   public dataSource = new MatTableDataSource<centerDTO>();
   public displayedColumns = ['name', 'address', 'description', 'grade', 'schedule'];
   public centers: centerDTO[] = [];
@@ -34,6 +38,14 @@ export class CentersComponent implements OnInit {
 
   public sortByGrade(){
     this.centersService.getCentersByGrade().subscribe(res => {
+      this.centers = res;
+      this.dataSource.data = this.centers;
+    })
+  }
+
+  public Search()
+  {
+    this.centersService.searchCenters(this.name, this.address,this.grade).subscribe(res => {
       this.centers = res;
       this.dataSource.data = this.centers;
     })

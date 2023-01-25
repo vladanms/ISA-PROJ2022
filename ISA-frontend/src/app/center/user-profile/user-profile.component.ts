@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserProfileServiceService } from '../services/user-profile-service.service';
+import { UserProfileService} from '../services/user-profile-service';
 
 @Component({
   selector: 'app-user-profile',
@@ -15,10 +15,10 @@ export class UserProfileComponent implements OnInit {
   phone: string = "";
   occupation: string = "";
   
-  constructor(private userService: UserProfileServiceService) { }
+  constructor(private userProfileService: UserProfileService) { }
 
   ngOnInit(): void {
-    this.userService.getUser().subscribe(res => {
+    this.userProfileService.getUser().subscribe(res => {
       this.name = res.name;
       this.surname = res.surname;
       this.address = res.address;

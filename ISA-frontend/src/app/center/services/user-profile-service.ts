@@ -6,7 +6,7 @@ import { User } from '../model/user';
 @Injectable({
   providedIn: 'root'
 })
-export class UserProfileServiceService {
+export class UserProfileService {
   apiHost: string = 'http://localhost:8091/';
   headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 

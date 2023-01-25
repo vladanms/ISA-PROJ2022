@@ -3,6 +3,19 @@
         <h2>Centers</h2>
     </mat-card-title>
     <mat-card-content>
+        <form>
+            <mat-label>Search parameters:</mat-label>
+            <div></div>
+            <mat-label>Name:</mat-label>
+            <input matInput name="name" [(ngModel)]="name">
+            <mat-label>Address:</mat-label>
+            <input matInput name="address" [(ngModel)]="address">
+            <mat-label>Min. avg. grade:</mat-label>
+            <input type="number" matInput name="grade" [(ngModel)]="grade">
+            <div></div>
+            <button (click)="Search()">Search</button>
+            <div></div>
+        </form>
         <button mat-flat-button (click)="sortByName()">Sort by name</button>
         <button mat-flat-button (click)="sortByGrade()">Sort by grade</button>
         <table mat-table [dataSource]="dataSource">

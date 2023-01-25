@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import main.authentication.*;
 import main.dto.PenalDTOView;
 import main.dto.UserDTO;
 import main.model.Penal;
@@ -159,6 +160,12 @@ public class UserController {
     public @ResponseBody User getUser(@Param("user") String user)
 	{
 		return userService.findByEmail(user);
+	}
+	
+	@PostMapping("/editUser")
+    public @ResponseBody Boolean editUser(@Param("user") String user)
+	{
+		return userService.edit(userService.findByEmail(user));	
 	}
 	
 	@GetMapping("/getPenals")

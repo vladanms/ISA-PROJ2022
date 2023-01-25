@@ -41,6 +41,7 @@ import { AppointmentsScheduledComponent } from './center/appointments-scheduled/
 import { AppointmentsCreateComponent } from './center/appointment-create/appointments-create.component';
 import { AppointmentsAttendedComponent } from './center/appointments-attended/appointments-attended.component';
 import { PenalsComponent } from './center/penals/penals.component';
+import { UserProfileDisplayComponent } from './user-profile-display/user-profile-display.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { PenalsComponent } from './center/penals/penals.component';
     AppointmentsScheduledComponent,
     AppointmentsCreateComponent,
     AppointmentsAttendedComponent,
-    PenalsComponent
+    PenalsComponent,
+    UserProfileDisplayComponent
   ],
   imports: [
     CommonModule,
