@@ -20,6 +20,7 @@ import main.model.Appointment;
 import main.model.Center;
 import main.model.User;
 import main.service.AppointmentService;
+import main.service.UserService;
 import main.dto.FreeAppointmentScheduleDTO;
 
 @RunWith(SpringRunner.class)
@@ -29,6 +30,9 @@ public class ApplicationTests {
 	@Autowired
 	private AppointmentService appointmentService;
 	
+	@Autowired
+	private UserService userService;
+	
 	@Test(expected = PessimisticLockingFailureException.class)
 	public void testPessimisticLockingScenario() throws Throwable {
 		
@@ -37,7 +41,9 @@ public class ApplicationTests {
 			@Override
 			public void run() {
 		        System.out.println("Startovan Thread 1");
-		        appointmentService.scheduleFreeAppointment(new Appointment());
+		        Optional<Appointment> a = appointmentService.getById(Long.parseLong("1"));
+		        a.get().setUser(userService.findByEmail("pera@gmail.com"));
+		        appointmentService.scheduleFreeAppointment(a.get());
 		// izvrsavanje transakcione metode traje oko 200 milisekundi
 				
 			}
@@ -55,7 +61,9 @@ public class ApplicationTests {
 		         * [pool-1-thread-2] o.h.engine.jdbc.spi.SqlExceptionHelper : ERROR: could not obtain lock on row in relation "product"
 		         * Prema Postgres dokumentaciji https://www.postgresql.org/docs/9.3/errcodes-appendix.html, kod 55P03 oznacava lock_not_available
 		         */
-		        appointmentService.scheduleFreeAppointment(new Appointment());	
+		        Optional<Appointment> a = appointmentService.getById(Long.parseLong("1"));
+		        a.get().setUser(userService.findByEmail("pera@gmail.com"));
+		        appointmentService.scheduleFreeAppointment(a.get());
 			}
 		});
 		try {
