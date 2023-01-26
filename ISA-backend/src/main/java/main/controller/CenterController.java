@@ -46,10 +46,10 @@ public class CenterController {
 					centerDTO.getAddress(),
 					centerDTO.getDescription(),
 					centerDTO.getAppointments(),
-					centerDTO.getAvgGrade()
+					centerDTO.getAvgGrade(),
 					//centerDTO.getGrade(),
 					//centerDTO.getFreeAppointments(),
-					//centerDTO.getAdmins()
+					centerDTO.getAdmins()
 				);
 		
 			centerService.Add(center);
@@ -121,6 +121,19 @@ public class CenterController {
 	{
 		ArrayList<Center> centers = centerService.FindCenter(centerDTO);
 		return new ResponseEntity<>(centers, HttpStatus.OK);
+	}
+	
+	@GetMapping("/getByAdmin")
+	public @ResponseBody Center getByAdmin(@Param("email") String email)
+	{
+		ArrayList<Center> centers = centerService.findAll();
+		for(Center c : centers){
+			if(c.getAdmins().contains(email))
+			{
+				return c;
+			}
+		}
+		return null;
 	}
 
 	

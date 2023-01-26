@@ -6,6 +6,7 @@ import { Center } from '../model/center'
 import { User } from '../model/user'
 import { Time } from '@angular/common';
 import { AppointmentsCreateService } from '../services/appointments-create.service';
+import { CentersService } from '../services/centers.service';
 
 @Component({
     selector: 'app-appointments-create',
@@ -16,13 +17,16 @@ import { AppointmentsCreateService } from '../services/appointments-create.servi
   export class AppointmentsCreateComponent implements OnInit{
     date : Date = null;
     time : Time = null;
+    centerName: string = null;
+    center: Center = null;
     
-    constructor(private appointmentsCreateService: AppointmentsCreateService, private router: Router, private toastr: ToastrService) { }
+    constructor(private appointmentsCreateService: AppointmentsCreateService, private centersService: CentersService,
+      private router: Router, private toastr: ToastrService) { }
 
     submit(){
-      this.appointmentsCreateService.createNewAppointment(this.date, this.time).subscribe({
+      this.appointmentsCreateService.createNewAppointment(this. center, this.date, this.time).subscribe({
           next: (res) => {
-              this.router.navigate(['centers']);
+              this.router.navigate(['center-home']);
               this.showSuccess();
             },
             error: (e) => {this.showError(e.error.Message, e.error.Title);
@@ -37,6 +41,12 @@ import { AppointmentsCreateService } from '../services/appointments-create.servi
     }
 
     ngOnInit(): void {
-        //this.center = localStorage.getItem('center');
+      this.centersService.getCenterByAdmin().subscribe(
+          {
+              next: (res) =>{
+                  this.center = res;
+              }
+          }
+      );
     }
   }

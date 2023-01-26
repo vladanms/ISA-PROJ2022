@@ -36,7 +36,7 @@ public class Center {
 	//private Set<Appointment> Appointments;
 	
 	//@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	//private ArrayList<User> admins;
+	private ArrayList<String> admins;
 	
 	public Center() {
 		super();
@@ -50,7 +50,7 @@ public class Center {
 		this.avgGrade = avgGrade;
 	}
 
-	public Center(Long id, String name, String address, String description, ArrayList<Appointment> appointments, Float avgGrade) {
+	public Center(Long id, String name, String address, String description, ArrayList<Appointment> appointments, Float avgGrade, ArrayList<String> admins) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -59,8 +59,8 @@ public class Center {
 		this.avgGrade = avgGrade;
 		//this.grade = grade;
 		//Appointments = Appointments;
-		/*this.admins = admins;
-		if(this.grade.size() > 0)
+		this.admins = admins;
+		/*if(this.grade.size() > 0)
 		{
 			for(int i = 0; i <= this.grade.size(); i++)
 			{
@@ -142,15 +142,15 @@ public class Center {
 		this.Appointments = Appointments;
 	}*/
 
-	/*public ArrayList<User> getAdmins() {
+	public ArrayList<String> getAdmins() {
 		return admins;
 	}
 
-	public void setAdmins(ArrayList<User> admins) {
+	public void setAdmins(ArrayList<String> admins) {
 		this.admins = admins;
 	}
 	
-	public void addGrade(Float g)
+	/*public void addGrade(Float g)
 	{
 		this.grade.add(g);
 	}*/

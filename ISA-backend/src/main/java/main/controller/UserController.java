@@ -133,6 +133,12 @@ public class UserController {
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 	
+	@GetMapping("/getUserType")
+	public @ResponseBody String getUserType(@RequestBody String email)
+	{
+		return (userService.findByEmail(email)).getType().toString();
+	}
+	
 	@PutMapping("/fillPersonalFile")
 	public ResponseEntity<User> editUser(@RequestBody PersonalFile file)
 	{
@@ -145,7 +151,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/checkPersonalFile")
-    public ResponseEntity<User> checkPersonalFile(@RequestBody String email){
+    public ResponseEntity<User> checkPersonalFile(@Param("email") String email){
 		User u = userService.findByEmail(email);
 		if(u.getPersonalFile() != null) {
 			return new ResponseEntity<>(HttpStatus.OK);

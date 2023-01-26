@@ -2,6 +2,8 @@ package main.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collections;
@@ -40,6 +42,7 @@ import org.springframework.web.bind.annotation.RestController;
 import main.dto.AppointmentDTO;
 import main.dto.AppointmentDTOView;
 import main.dto.AttendedAppointmentDTOView;
+import main.dto.CenterDTO;
 import main.dto.CenterDTOView;
 import main.dto.FreeAppointmentScheduleDTO;
 import main.model.*;
@@ -67,6 +70,9 @@ public class AppointmentController {
         QRCodeGenerator.generateQRCodeImage(content,250,250,QR_CODE_IMAGE_PATH + idAppointment + ".png");
         return true;
     }
+    
+    @Autowired
+    private CenterService centerService;
     
     @Autowired
 	private AppointmentService appointmentService;
@@ -99,6 +105,7 @@ public class AppointmentController {
 		}
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+  
 
     @PutMapping("/schedule")
     public ResponseEntity<Appointment> scheduleAppointment(@RequestBody AppointmentDTO appointmentDTO)
@@ -334,5 +341,23 @@ public class AppointmentController {
 		Collections.sort(appointmentDTOs, Comparator.comparing(AttendedAppointmentDTOView::getLength));
 		return appointmentDTOs;
 	}
-
+    
+    @GetMapping("/getCenters")
+    public @ResponseBody ArrayList<Center> getCenters(@Param("date") LocalDate date, @Param("time") LocalTime time)
+    {
+		ArrayList<Appointment> appointments = appointmentService.getAll();
+		ArrayList<Center> centers = new ArrayList<Center>();
+    	for(Appointment a: appointments)
+    	{
+    		if(a.getDate() == date & a.getTime() == time)
+    		{
+    			for(Center c: centerService.findAll())
+    			{
+    				centers.add(a.getCenter());
+    			}
+    		}
+    	}
+		return centers;
+    }
+    
 }

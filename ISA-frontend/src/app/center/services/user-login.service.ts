@@ -30,4 +30,8 @@ export class UserLoginService {
 
     return this.http.post<any>(this.apiHost + 'user/login', userDTO, {headers: this.headers});
   }
+
+  getType(): Observable<string>{
+    return this.http.get<string>(this.apiHost + 'user/getType?email=' + localStorage.getItem('loggedUser'), {headers: this.headers})
+  }
 }

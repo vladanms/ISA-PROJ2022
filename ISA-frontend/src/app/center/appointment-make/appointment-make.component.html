@@ -1,0 +1,46 @@
+<mat-card fxFlex class="content">
+    <mat-card-title>
+        <h2>Centers</h2>
+    </mat-card-title>
+    <mat-card-content>
+        <form>
+            <mat-form-field appearance="fill">
+                <mat-label>Choose date:</mat-label>
+                <input type = "date" name = "date" [(ngModel)]="date">
+            </mat-form-field>
+            <div></div>
+            <mat-form-field appearance="fill">
+                <mat-label>Choose time:</mat-label>
+                <input type = "time" name = "time" [(ngModel)]="time">
+            </mat-form-field>
+            <div></div>
+        </form>
+        <button mat-flat-button (click)="SortByGrade()">Sort by grade</button>
+        <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef class="cell-center"> Name </th>
+                <td mat-cell *matCellDef="let center" class="cell-center">{{center.name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="address">
+                <th mat-header-cell *matHeaderCellDef class="cell-center"> Address </th>
+                <td mat-cell *matCellDef="let center" class="cell-center">{{center.address}}</td>
+            </ng-container>
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef class="cell-center"> Description </th>
+                <td mat-cell *matCellDef="let center" class="cell-center">{{center.description}}</td>
+            </ng-container>
+            <ng-container matColumnDef="grade">
+                <th mat-header-cell *matHeaderCellDef class="cell-center"> Average Grade</th>
+                <td mat-cell *matCellDef="let center" class="cell-center">{{center.avgGrade}}</td>
+            </ng-container>
+            <ng-container matColumnDef="schedule">
+                <th mat-header-cell *matHeaderCellDef class="cell-center">Schedule Appointment</th>
+                <td mat-cell *matCellDef="let center" class="cell-center">
+                    <button class="scheduleButton" mat-raised-button (click)="schedule(center.id, center.name)">Schedule</button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card-content>
+</mat-card>

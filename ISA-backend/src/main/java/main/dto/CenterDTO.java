@@ -12,10 +12,10 @@ public class CenterDTO {
 	private String description;
 	//private ArrayList<Float> grade;
 	private ArrayList<Appointment> appointments;
-	//private ArrayList<User> admins;
+	private ArrayList<String> admins;
 	private Float avgGrade;
 	
-	public CenterDTO(Long id, String name, String address, String description, Float avgGrade, ArrayList<Appointment> appointments) {
+	public CenterDTO(Long id, String name, String address, String description, Float avgGrade, ArrayList<Appointment> appointments, ArrayList<String> admins) {
 		super();
 		this.name = name;
 		this.address = address;
@@ -23,6 +23,7 @@ public class CenterDTO {
 		this.avgGrade = avgGrade;
 		//this.grade = grade;
 		this.appointments = appointments;
+		this.admins = admins;
 		/*this.admins = admins;
 		if(this.grade.size() > 0)
 		{
@@ -86,13 +87,13 @@ public class CenterDTO {
 		this.appointments = appointments;
 	}
 
-	/*public ArrayList<User> getAdmins() {
+	public ArrayList<String> getAdmins() {
 		return admins;
 	}
 
-	public void setAdmins(ArrayList<User> admins) {
+	public void setAdmins(ArrayList<String> admins) {
 		this.admins = admins;
-	}*/
+	}
 	
 	
 }

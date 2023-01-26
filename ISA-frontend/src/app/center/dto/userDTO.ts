@@ -2,6 +2,7 @@ export class UserDTO{
 	
 	id: string;
 	name: string;
+	jmbg: string;
 	surname: string;
 	email: string;
 	password: string;

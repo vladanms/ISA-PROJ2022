@@ -42,6 +42,9 @@ import { AppointmentsCreateComponent } from './center/appointment-create/appoint
 import { AppointmentsAttendedComponent } from './center/appointments-attended/appointments-attended.component';
 import { PenalsComponent } from './center/penals/penals.component';
 import { UserProfileDisplayComponent } from './center/user-profile-display/user-profile-display.component';
+import { CenterHomeComponent } from './center/center-home/center-home.component';
+import { AppointmentMakeComponent } from './center/appointment-make/appointment-make.component';
+import { AdminLoginComponent } from './center/admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,10 @@ import { UserProfileDisplayComponent } from './center/user-profile-display/user-
     AppointmentsCreateComponent,
     AppointmentsAttendedComponent,
     PenalsComponent,
-    UserProfileDisplayComponent
+    UserProfileDisplayComponent,
+    CenterHomeComponent,
+    AppointmentMakeComponent,
+    AdminLoginComponent
   ],
   imports: [
     CommonModule,

@@ -28,7 +28,7 @@ export class UserProfileDisplayComponent implements OnInit {
   ngOnInit(): void {
     this.userProfileService.getUser().subscribe(res => {
       this.id = res.id;
-      this.jmbg = res.JMBG;
+      this.jmbg = res.jmbg;
       this.name = res.name;
       this.surname = res.surname;
       this.address = res.address;

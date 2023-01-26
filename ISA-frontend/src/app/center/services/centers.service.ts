@@ -42,4 +42,9 @@ export class CentersService {
     return this.http.get<centerDTO[]>(this.apiHost + 'center/getByCustomParameters?name=' + name + '?' + address + '?' + avgGrade,
      {headers: this.headers});
   }
+
+  getCenterByAdmin(): Observable<centerDTO>
+  {
+    return this.http.get<centerDTO>(this.apiHost + 'center/getByAdmin?email=' + localStorage.getItem('loggedUser'), {headers: this.headers});
+  }
 }

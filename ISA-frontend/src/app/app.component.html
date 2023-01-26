@@ -5,9 +5,11 @@
             <li *ngIf="loggedUserRole === 'Registered'" class="nav-item"><a class="nav-link" routerLink="centers">Centers</a></li>
             <li *ngIf="loggedUserRole === 'Registered'" class="nav-item"><a class="nav-link" routerLink="personal-file">Personal File</a></li>
             <li *ngIf="loggedUserRole === 'Registered'" class="nav-item"><a class="nav-link" routerLink="appointments-scheduled">Scheduled Appointments</a></li>
-            <li *ngIf="loggedUserRole === 'Registered'" class="nav-item"><a class="nav-link" routerLink="user-profile">Profile</a></li>
+            <li *ngIf="loggedUserRole === 'Registered'" class="nav-item"><a class="nav-link" routerLink="user-profile-display">Profile</a></li>
             <li *ngIf="loggedUserRole === 'Registered'" class="nav-item"><a class="nav-link" routerLink="appointments-attended">Attended Appointments</a></li>
             <li *ngIf="loggedUserRole === 'Registered'" class="nav-item"><a class="nav-link" routerLink="penals">Penals</a></li>
+            <li *ngIf="loggedUserRole === 'Registered'" class="nav-item"><a class="nav-link" routerLink="appointment-make">Make appointment</a></li>
+            <li *ngIf="loggedUserRole === 'Admin'" class="nav-item"><a class="nav-link" routerLink="center-home">Center</a></li>
         </ul>
     </div>
 </nav>
