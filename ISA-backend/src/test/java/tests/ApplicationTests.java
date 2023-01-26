@@ -41,7 +41,7 @@ public class ApplicationTests {
 			@Override
 			public void run() {
 		        System.out.println("Startovan Thread 1");
-				Optional<Appointment> appointmentToUpdate = appointmentService.getById(Long.parseLong("1"));// ocitan objekat sa id 1
+				Optional<Appointment> appointmentToUpdate = appointmentService.getById(1L);// ocitan objekat sa id 1
 				appointmentToUpdate.get().setUser(new User());// izmenjen ucitan objekat
 				try { Thread.sleep(3000); } catch (InterruptedException e) {}// thread uspavan na 3 sekunde da bi drugi thread mogao da izvrsi istu operaciju
 				appointmentService.scheduleFreeAppointment(appointmentToUpdate.get());// bacice ObjectOptimisticLockingFailureException
@@ -52,7 +52,7 @@ public class ApplicationTests {
 			@Override
 			public void run() {
 		        System.out.println("Startovan Thread 2");
-				Optional<Appointment> appointmentToUpdate = appointmentService.getById(Long.parseLong("1"));// ocitan isti objekat sa id 1 kao i iz prvog threada
+				Optional<Appointment> appointmentToUpdate = appointmentService.getById(1L);// ocitan isti objekat sa id 1 kao i iz prvog threada
 				appointmentToUpdate.get().setUser(new User());// izmenjen ucitan objekat
 				appointmentService.scheduleFreeAppointment(appointmentToUpdate.get());
 			}

@@ -29,6 +29,15 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   submit(){
+    if(this.name == "" || this.surname == "" || this.email == "" || this.password == "" || this.jmbg == "" ||
+      this.address == "" || this.city == "" || this.country == "" || this.phone == "" || this.occupation == "" || this.company == ""){
+        this.showError('Fill out all fields.', 'Clinic application');
+        return;   
+      }
+      if(this.password != this.confirmPassword){
+        this.showError('Passwords don\'t match.', 'Clinic application');
+        return;   
+      }
     this.userRegistrationService.register(this.name, this.surname, this.email, this.password, this.jmbg,
       this.address, this.city, this.country, this.phone, this.gender, this.occupation, this.company).subscribe(
       {

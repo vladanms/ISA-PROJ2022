@@ -182,7 +182,7 @@ public class AppointmentController {
     	a.get().setUser(userService.findByEmail(fasDTO.getEmail()));
     	appointmentService.scheduleFreeAppointment(a.get());
     	
-    	String toAddress = fasDTO.getEmail();
+    	/*String toAddress = fasDTO.getEmail();
 	    String fromAddress = "ISA-Email";
 	    String senderName = "FTN";
 	    String subject = "Free appointment scheduled";
@@ -206,7 +206,7 @@ public class AppointmentController {
 	     
 	    helper.setText(content, true);
 	     
-	    mailSender.send(message);
+	    mailSender.send(message);*/
     	
     	return new ResponseEntity<>(HttpStatus.OK);
     }

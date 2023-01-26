@@ -36,7 +36,7 @@ public class AppointmentService {
         return true;
 	}
 
-	@Transactional(readOnly = false)
+	//@Transactional(readOnly = false)
 	public Appointment scheduleFreeAppointment(Appointment appointment)
     {
 		logger.info("> schedule");

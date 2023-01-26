@@ -34,7 +34,7 @@ public class Appointment {
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     private User user;
     
-    @Version
+    /*@Version
 	private Integer version;
     
     public Integer getVersion() {
@@ -43,7 +43,7 @@ public class Appointment {
 
 	public void setVersion(Integer version) {
 		this.version = version;
-	}
+	}*/
 
 	public Appointment() {
 		super();
