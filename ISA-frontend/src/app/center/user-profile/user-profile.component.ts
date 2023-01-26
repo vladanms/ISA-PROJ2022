@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { User } from '../model/user';
 import { UserProfileService} from '../services/user-profile-service';
 
 @Component({
@@ -14,8 +17,9 @@ export class UserProfileComponent implements OnInit {
   country: string = "";
   phone: string = "";
   occupation: string = "";
+  user: User;
   
-  constructor(private userProfileService: UserProfileService) { }
+  constructor(private router:Router, private toastr: ToastrService, private userProfileService: UserProfileService) { }
 
   ngOnInit(): void {
     this.userProfileService.getUser().subscribe(res => {
@@ -29,6 +33,22 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
-  save(){}
-  cancel(){}
+  save()
+  {
+    this.user.name = this.name;
+    this.user.surname = this.surname;
+    this.user.surname = this.surname;
+    this.user.address = this.address;
+    this.user.city = this.city;
+    this.user.country = this.country;
+    this.user.phone = this.phone;
+    this.user.occupation = this.occupation;
+    this.userProfileService.saveUser(this.user);
+    this.router.navigate(['/user-profile']);
+  }
+
+  cancel()
+  {
+    this.router.navigate(['/user-profile']);
+  }
 }

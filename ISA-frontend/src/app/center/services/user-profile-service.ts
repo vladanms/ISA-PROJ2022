@@ -15,4 +15,8 @@ export class UserProfileService {
   getUser(): Observable<User>{
     return this.http.get<User>(this.apiHost + 'user/getUser?user=' + localStorage.getItem('loggedUser'),  {headers: this.headers});
   }
+
+  saveUser(user : User){
+    this.http.get<User>(this.apiHost + 'user/editUser?user=' + user,  {headers: this.headers});
+  }
 }

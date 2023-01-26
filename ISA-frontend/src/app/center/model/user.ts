@@ -1,6 +1,7 @@
 export class User{
 	
 	id: string;
+	JMBG: string;
 	name: string;
 	surname: string;
 	email: string;

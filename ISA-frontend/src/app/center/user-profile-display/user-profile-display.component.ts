@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatTableDataSource } from '@angular/material/table';
-import { UserDTO } from '../dto/userDTO';
+import { User } from '../model/user';
 import { UserProfileService } from '../services/user-profile-service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -12,6 +11,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UserProfileDisplayComponent implements OnInit {
 
+  id: any = "";
+  jmbg: any = "";
   name: string = "";
   surname: string = "";
   address: string = "";
@@ -20,10 +21,14 @@ export class UserProfileDisplayComponent implements OnInit {
   phone: string = "";
   occupation: string = "";
 
+  
+
   constructor(private router:Router, private toastr: ToastrService, private userProfileService: UserProfileService) { }
 
   ngOnInit(): void {
     this.userProfileService.getUser().subscribe(res => {
+      this.id = res.id;
+      this.jmbg = res.JMBG;
       this.name = res.name;
       this.surname = res.surname;
       this.address = res.address;
@@ -32,6 +37,21 @@ export class UserProfileDisplayComponent implements OnInit {
       this.phone = res.phone;
       this.occupation = res.occupation;
   })
+}
+
+public editProfile()
+{
+  this.router.navigate(['/user-profile']);
+}
+
+public editFile()
+{
+  this.router.navigate(['/personal-file']);
+}
+
+public makeAppointment()
+{
+  this.router.navigate(['/appointments-free']);
 }
 
 }

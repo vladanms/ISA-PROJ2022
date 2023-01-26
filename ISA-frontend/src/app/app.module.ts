@@ -41,7 +41,7 @@ import { AppointmentsScheduledComponent } from './center/appointments-scheduled/
 import { AppointmentsCreateComponent } from './center/appointment-create/appointments-create.component';
 import { AppointmentsAttendedComponent } from './center/appointments-attended/appointments-attended.component';
 import { PenalsComponent } from './center/penals/penals.component';
-import { UserProfileDisplayComponent } from './user-profile-display/user-profile-display.component';
+import { UserProfileDisplayComponent } from './center/user-profile-display/user-profile-display.component';
 
 @NgModule({
   declarations: [

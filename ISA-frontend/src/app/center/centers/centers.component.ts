@@ -14,7 +14,7 @@ export class CentersComponent implements OnInit {
 
   name: string = "";
   address: string = "";
-  grade: number = "";
+  grade: any = "";
 
   public dataSource = new MatTableDataSource<centerDTO>();
   public displayedColumns = ['name', 'address', 'description', 'grade', 'schedule'];

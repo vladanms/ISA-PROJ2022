@@ -1,0 +1,40 @@
+<mat-card>
+    <mat-card-title>
+        User profile
+    </mat-card-title>
+    <mat-card-content>
+        <div></div>
+        <mat-label>Name:</mat-label>
+        <mat-label>{{name}}</mat-label>
+        <div></div>
+        <mat-label>Surname:</mat-label>
+        <mat-label>{{surname}}</mat-label>
+        <div></div>
+        <mat-label>Personal ID:</mat-label>
+        <mat-label>{{jmbg}}</mat-label>
+        <div></div>
+        <mat-label>Addres:</mat-label>
+        <mat-label>{{address}}</mat-label>
+        <div></div>
+        <mat-label>City:</mat-label>
+        <mat-label>{{city}}</mat-label>
+        <div></div>
+        <mat-label>Country:</mat-label>
+        <mat-label>{{country}}</mat-label>
+        <div></div>
+        <mat-label>Phone:</mat-label>
+        <mat-label>{{phone}}</mat-label>
+        <div></div>
+        <mat-label>Occupation:</mat-label>
+        <mat-label>{{occupation}}</mat-label>
+        <div></div>
+    <form>
+        <button (click)="editProfile">Edit profile</button>
+        <div></div>
+        <button (click)="editFile">Fill personal file</button>
+        <div></div>
+        <button (click)="makeAppointment">Make appointment</button>
+    </form>
+
+    </mat-card-content>
+</mat-card>
