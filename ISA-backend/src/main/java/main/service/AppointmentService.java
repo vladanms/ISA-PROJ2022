@@ -11,6 +11,7 @@ import java.time.LocalTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.PessimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ import main.model.*;
 import main.repository.AppointmentRepository;
 
 @Service
+@Transactional
 public class AppointmentService {
     
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -36,13 +38,20 @@ public class AppointmentService {
         return true;
 	}
 
-	//@Transactional(readOnly = false)
-	public Appointment scheduleFreeAppointment(Appointment appointment)
+	@Transactional
+	public boolean scheduleFreeAppointment(Appointment appointment)
     {
-		logger.info("> schedule");
-		Appointment savedAppoinment = appointmentRepository.save(appointment);
-		logger.info("< schedule");
-		return savedAppoinment;
+		try {
+            Appointment appointmentToSchedule = appointmentRepository.findOneById(appointment.getId());
+             if (appointmentToSchedule == null) {
+                    return false;
+             }
+             appointmentRepository.save(appointment);
+             return true;
+
+        } catch(PessimisticLockingFailureException ex) {
+            throw new PessimisticLockingFailureException("Appointment already scheduled!");
+        }
     }
 
     public int schedule(Appointment appointment, User user)
