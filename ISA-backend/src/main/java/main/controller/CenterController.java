@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -122,4 +123,30 @@ public class CenterController {
 		return new ResponseEntity<>(centers, HttpStatus.OK);
 	}
 
+	
+	@GetMapping("/getByCustomParameters")
+	public @ResponseBody ArrayList<CenterDTOView> getByCustomParameters(@Param("name") String name , @Param("address") String address, @Param("avgGrade") String avgGrade)
+	{
+	ArrayList<Center> centers = centerService.findAll();
+	ArrayList<CenterDTOView> centerDTOs = new ArrayList<CenterDTOView>();
+		
+	String[] params = name.split("\\?", 0);
+	System.out.println(params);
+		for(Center c : centers){
+			if(((params[0].equals("isNull")) || c.getName().contains(params[0])) & 
+					(params[1].equals("isNull") || (c.getAddress().contains(params[1]))) &
+					(params[2].equals("isNull") || (c.getAvgGrade() >= Float.parseFloat(params[2])))) {
+			CenterDTOView cen = new CenterDTOView();
+			cen.setId(c.getId().intValue());
+			cen.setName(c.getName());
+			cen.setAddress(c.getAddress());
+			cen.setDescription(c.getDescription());
+			cen.setAvgGrade(c.getAvgGrade());
+			centerDTOs.add(cen);
+			}
+		}
+		
+		Collections.sort(centerDTOs, Comparator.comparing(CenterDTOView::getAvgGrade));
+		return centerDTOs;
+	}
 }

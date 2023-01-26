@@ -31,8 +31,15 @@ export class CentersService {
     return this.http.post<any>(this.apiHost + 'user/checkPersonalFile', email, {headers: this.headers});
   }
 
-  searchCenters(name: any, address: any, avgGrade: any): Observable<centerDTO[]> {
-    return this.http.get<centerDTO[]>(this.apiHost + 'center/getByCustomParameters?name=' + name + '?address=' + address + '?avgGrade=' + avgGrade,
+  searchCenters(name: String, address: String, avgGrade: String): Observable<centerDTO[]> {
+    if(name.length < 1)
+    {name = 'isNull';}
+    if(address.length < 1)
+    {address = 'isNull';}
+    if(avgGrade.length < 1)
+    {avgGrade = 'isNull';}
+    console.log(name, address, avgGrade);
+    return this.http.get<centerDTO[]>(this.apiHost + 'center/getByCustomParameters?name=' + name + '?' + address + '?' + avgGrade,
      {headers: this.headers});
   }
 }

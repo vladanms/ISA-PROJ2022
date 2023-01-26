@@ -45,6 +45,7 @@ export class CentersComponent implements OnInit {
 
   public Search()
   {
+    console.log(this.name);
     this.centersService.searchCenters(this.name, this.address,this.grade).subscribe(res => {
       this.centers = res;
       this.dataSource.data = this.centers;

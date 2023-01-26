@@ -16,7 +16,7 @@ export class UserProfileService {
     return this.http.get<User>(this.apiHost + 'user/getUser?user=' + localStorage.getItem('loggedUser'),  {headers: this.headers});
   }
 
-  saveUser(user : User){
-    this.http.get<User>(this.apiHost + 'user/editUser?user=' + user,  {headers: this.headers});
+  saveUser(){
+    this.http.post<User>(this.apiHost + 'user/editUser?user=' + localStorage.getItem('loggedUser'),  {headers: this.headers});
   }
 }

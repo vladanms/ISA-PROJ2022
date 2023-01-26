@@ -43,12 +43,13 @@ export class UserProfileComponent implements OnInit {
     this.user.country = this.country;
     this.user.phone = this.phone;
     this.user.occupation = this.occupation;
-    this.userProfileService.saveUser(this.user);
-    this.router.navigate(['/user-profile']);
+    
+    this.userProfileService.saveUser();
+    this.router.navigate(['/user-profile-display']);
   }
 
   cancel()
   {
-    this.router.navigate(['/user-profile']);
+    this.router.navigate(['/user-profile-display']);
   }
 }
