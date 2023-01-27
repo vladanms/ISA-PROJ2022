@@ -151,7 +151,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/checkPersonalFile")
-    public ResponseEntity<User> checkPersonalFile(@Param("email") String email){
+    public ResponseEntity<User> checkPersonalFile(@RequestBody String email){
 		User u = userService.findByEmail(email);
 		if(u.getPersonalFile() != null) {
 			return new ResponseEntity<>(HttpStatus.OK);
